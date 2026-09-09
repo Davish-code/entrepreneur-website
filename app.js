@@ -1338,7 +1338,7 @@ window.loadAnalyticsData = async function(container) {
 // ==========================================
 // VIRTUAL INTERVIEW LOGIC
 // ==========================================
-const INTERVIEW_API_BASE_URL = "https://streams-lights-genetics-spies.trycloudflare.com"; // Update with your tunnel URL if testing live
+const INTERVIEW_API_BASE_URL = "https://onion-drugs-robust-nancy.trycloudflare.com";
 
 window.startVirtualInterview = async function(button) {
     const subject = button.getAttribute('data-subject');
