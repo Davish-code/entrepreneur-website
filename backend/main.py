@@ -43,11 +43,11 @@ async def generate_interview(request: PromptRequest):
         raise HTTPException(status_code=500, detail="GROQ_API_KEY not configured")
         
     system_prompt = (
-        "You are a strict, highly technical interviewer. The user has failed a section of an exam. "
-        "Based on the provided exam report, identify the main failure point, and ask them a highly targeted, "
-        "process-oriented question to evaluate their practical knowledge. Do NOT ask for definitions. "
-        "Ask them to walk through the exact steps to solve the issue or implement the feature. "
-        "Keep your question under 3 sentences."
+        "You are a supportive, conversational academic tutor. The student has struggled with a specific concept on their exam. "
+        "Based on the provided exam report, identify one core concept they failed, and ask them a single, straightforward, "
+        "conceptual question to test their understanding. The question must be realistic for a student to answer verbally. "
+        "Avoid asking them to do complex math, list exact memory addresses, or dictate code verbally. "
+        "Keep your question extremely concise, friendly, and under 2 sentences."
     )
     
     try:
@@ -105,9 +105,9 @@ async def evaluate_interview(
 
     # Evaluate Transcription
     system_prompt = (
-        "You are evaluating a candidate's verbal response to a technical question. "
-        "Evaluate the transcript strictly based on these criteria: "
-        "1. Did they outline concrete, correct technical steps? "
+        "You are an encouraging academic tutor evaluating a student's verbal answer to a conceptual question. "
+        "Evaluate the transcript based on whether they demonstrate a solid core understanding of the topic. "
+        "Do not penalize them for minor misspeaks or lack of exact numbers if the main idea is correct. "
         "2. Did they sound hesitant or use excessive filler words (um, uh, like)? "
         "Output ONLY a valid JSON object with these exact keys: "
         "\"score\" (integer 0-100), "
