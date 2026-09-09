@@ -741,15 +741,31 @@ window.showStudentDetail = async function (docId) {
 
                                 let html = '<div style="margin-top: 20px;"><h4 style="color: #60a5fa; margin-bottom: 10px; font-size: 14px;">Virtual Interview History</h4>';
                                 allInterviews.forEach((inv, index) => {
+                                    const rubricsHTML = inv.rubric ? Object.entries(inv.rubric).map(([k, v]) => `
+                                        <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:12px;">
+                                            <span style="color:#94a3b8;">${k}</span>
+                                            <span style="color:${v >= 70 ? '#10b981' : '#ef4444'};">${v}%</span>
+                                        </div>
+                                    `).join('') : '';
+
                                     html += `
                                             <div style="margin-top: 12px; padding: 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(0,0,0,0.2);">
-                                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                                                     <strong style="color: #cbd5e1; font-size: 13px;">Attempt #${allInterviews.length - index}</strong>
-                                                    <span style="font-size: 12px; color: ${inv.score >= 70 ? '#10b981' : '#ef4444'}; font-weight: bold;">Score: ${inv.score}/100</span>
+                                                    <span style="font-size: 12px; color: ${inv.score >= 70 ? '#10b981' : '#f59e0b'}; font-weight: bold; border: 1px solid currentColor; padding: 2px 6px; border-radius: 4px;">Score: ${inv.score}/100</span>
                                                 </div>
-                                                <div style="font-size: 13px; color: #94a3b8; margin-bottom: 8px;"><b>Prompt:</b> ${inv.prompt}</div>
-                                                <div style="font-size: 13px; color: #cbd5e1; margin-bottom: 8px;"><b>Student:</b> "${inv.transcription}"</div>
-                                                <div style="font-size: 13px; font-style: italic; color: #f8fafc;"><b>AI Feedback:</b> "${inv.feedback}"</div>
+                                                
+                                                <div style="font-size: 13px; color: #94a3b8; margin-bottom: 8px;"><b>Examiner Prompt:</b> ${inv.prompt}</div>
+                                                <div style="font-size: 13px; color: #cbd5e1; margin-bottom: 12px;"><b>Student Response:</b> "${inv.transcription}"</div>
+                                                
+                                                <div style="background: rgba(15, 23, 42, 0.5); padding: 12px; border-radius: 6px; border-left: 3px solid ${inv.score >= 70 ? '#10b981' : '#f59e0b'};">
+                                                    ${inv.conceptual_gap ? '<div style="color: #f59e0b; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px;">⚠️ Conceptual Gap</div>' : ''}
+                                                    <div style="color: #f8fafc; font-size: 13px; font-weight: 600; margin-bottom: ${rubricsHTML ? '10px' : '0'};">${inv.feedback_title || 'AI Feedback'}</div>
+                                                    
+                                                    ${rubricsHTML ? `<div style="margin-bottom:10px;">${rubricsHTML}</div>` : ''}
+                                                    
+                                                    ${inv.what_to_fix ? `<div style="color: #cbd5e1; font-size: 12px; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px;"><b>What to fix:</b> ${inv.what_to_fix}</div>` : (inv.feedback ? `<div style="color: #cbd5e1; font-size: 12px;">${inv.feedback}</div>` : '')}
+                                                </div>
                                             </div>`;
                                 });
                                 html += '</div>';
@@ -1366,42 +1382,52 @@ window.startVirtualInterview = async function (button) {
 
     // Create Modal UI if it doesn't exist
     let modal = document.getElementById('interview-modal');
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'interview-modal';
-        modal.innerHTML = `
-            <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 9999; flex-direction: column;">
-                <div style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 30px; width: 90%; max-width: 600px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
-                    <h2 style="color: #f8fafc; font-size: 24px; margin-bottom: 20px;">Virtual Interview: <span style="color:#60a5fa">${subject}</span></h2>
-                    
-                    <div id="interview-status" style="color: #94a3b8; margin-bottom: 20px; font-size: 14px;">Connecting to AI Interviewer...</div>
-                    <div id="interview-prompt" style="color: #cbd5e1; font-size: 16px; line-height: 1.6; margin-bottom: 30px; font-style: italic; min-height: 80px;"></div>
-                    
-                    <div id="record-controls" style="display: none;">
-                        <button id="btn-record" style="background: #ef4444; color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; margin: 0 auto; gap: 8px;">
-                            <span style="display: inline-block; width: 12px; height: 12px; background: white; border-radius: 50%; animation: pulse 1.5s infinite;"></span>
-                            Start Recording
-                        </button>
+    if (modal) modal.remove(); // Rebuild for clean state
+
+    modal = document.createElement('div');
+    modal.id = 'interview-modal';
+    modal.innerHTML = `
+        <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 9999; flex-direction: column;">
+            <div id="interview-modal-content" style="background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; width: 90%; max-width: 700px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); display: flex; flex-direction: column; max-height: 90vh;">
+                
+                <!-- Header -->
+                <div style="padding: 20px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(16, 185, 129, 0.2); color: #10b981; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">M</div>
+                        <div>
+                            <h2 style="color: #f8fafc; font-size: 18px; margin: 0;">Virtual Viva &mdash; <span style="color:#60a5fa">${subject}</span></h2>
+                            <div id="interview-status-tag" style="color: #94a3b8; font-size: 12px; margin-top: 4px;">Connecting...</div>
+                        </div>
                     </div>
-                    
-                    <div style="margin-top: 30px;">
-                        <button onclick="document.getElementById('interview-modal').style.display='none'" style="background: transparent; border: none; color: #64748b; cursor: pointer; text-decoration: underline;">Cancel Interview</button>
+                    <button onclick="document.getElementById('interview-modal').remove()" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; cursor: pointer; padding: 6px 12px; border-radius: 6px; font-size: 12px;">Close</button>
+                </div>
+
+                <!-- Body -->
+                <div id="interview-body" style="padding: 30px; overflow-y: auto;">
+                    <div id="interview-status" style="color: #cbd5e1; text-align: center; margin-top: 20px;">Analyzing CAT report & generating prompt...</div>
+                    <div id="interview-prompt" style="display:none;"></div>
+                    <div id="record-controls" style="display:none; text-align: center; margin-top: 30px;">
+                        <button id="btn-record" style="background: #10b981; color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: 600; cursor: pointer;">Begin Answer</button>
                     </div>
                 </div>
-            </div>
-        `;
-        document.body.appendChild(modal);
-    }
 
-    modal.style.display = 'flex';
+            </div>
+        </div>
+        <style>
+            @keyframes eq {
+                0% { height: 20%; }
+                100% { height: 100%; }
+            }
+        </style>
+    `;
+    document.body.appendChild(modal);
+
+    const statusTag = document.getElementById('interview-status-tag');
     const statusEl = document.getElementById('interview-status');
     const promptEl = document.getElementById('interview-prompt');
     const controls = document.getElementById('record-controls');
     const btnRecord = document.getElementById('btn-record');
-
-    statusEl.innerText = "Analyzing CAT report & generating prompt...";
-    promptEl.innerText = "";
-    controls.style.display = 'none';
+    const interviewBody = document.getElementById('interview-body');
 
     let originalPromptText = "";
 
@@ -1418,26 +1444,36 @@ window.startVirtualInterview = async function (button) {
         const data = await response.json();
         originalPromptText = data.prompt_text;
 
-        statusEl.innerText = "AI is speaking...";
-        promptEl.innerText = `"${originalPromptText}"`;
+        statusTag.innerText = "Live";
+        statusTag.style.color = "#10b981";
+        
+        // Show AI chat bubble
+        statusEl.style.display = 'none';
+        promptEl.style.display = 'block';
+        promptEl.innerHTML = `
+            <div style="display: flex; gap: 15px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0;">AI</div>
+                <div>
+                    <div style="font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Examiner</div>
+                    <div style="color: #cbd5e1; line-height: 1.5; font-size: 14px;">"${originalPromptText}"</div>
+                </div>
+            </div>
+        `;
 
         // Play AI Voice
         if (data.audio_base64) {
             const audio = new Audio(data.audio_base64);
             audio.play();
             audio.onended = () => {
-                statusEl.innerText = "Your turn. Click below to start answering.";
                 controls.style.display = 'block';
             };
         } else if ('speechSynthesis' in window) {
             const msg = new SpeechSynthesisUtterance(originalPromptText);
             msg.onend = () => {
-                statusEl.innerText = "Your turn. Click below to start answering.";
                 controls.style.display = 'block';
             };
             window.speechSynthesis.speak(msg);
         } else {
-            statusEl.innerText = "Your turn. Click below to start answering.";
             controls.style.display = 'block';
         }
 
@@ -1449,49 +1485,90 @@ window.startVirtualInterview = async function (button) {
     // 2. Recording Logic
     let mediaRecorder;
     let audioChunks = [];
-    let isRecording = false;
+    let recognition;
+    
+    // Setup Speech Recognition for live preview if available
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+    }
 
     btnRecord.onclick = async () => {
-        if (!isRecording) {
-            // Start Recording
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                mediaRecorder = new MediaRecorder(stream);
-                audioChunks = [];
+        // Start Recording
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            audioChunks = [];
 
-                mediaRecorder.ondataavailable = event => {
-                    audioChunks.push(event.data);
+            mediaRecorder.ondataavailable = event => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = async () => {
+                if (recognition) recognition.stop();
+                const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                submitInterviewAudio(audioBlob, subject, originalPromptText, docId, studentId);
+            };
+            
+            if (recognition) {
+                recognition.onresult = (event) => {
+                    let transcript = "";
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        transcript += event.results[i][0].transcript;
+                    }
+                    const liveTx = document.getElementById('live-transcript');
+                    if (liveTx) liveTx.innerText = '"' + transcript + '..."';
                 };
-
-                mediaRecorder.onstop = async () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-                    submitInterviewAudio(audioBlob, subject, originalPromptText, statusEl, promptEl, controls, docId, studentId);
-                };
-
-                mediaRecorder.start();
-                isRecording = true;
-                btnRecord.innerHTML = "Stop Recording";
-                btnRecord.style.background = "#3b82f6"; // blue
-                statusEl.innerText = "Recording... Speak clearly.";
-
-            } catch (err) {
-                alert("Microphone access denied or unavailable.");
+                recognition.start();
             }
-        } else {
-            // Stop Recording
-            mediaRecorder.stop();
-            mediaRecorder.stream.getTracks().forEach(t => t.stop());
-            isRecording = false;
-            btnRecord.innerHTML = "Start Recording";
-            btnRecord.style.background = "#ef4444";
-            controls.style.display = 'none';
+
+            mediaRecorder.start();
+            
+            // Render Listening UI
+            interviewBody.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <div style="width: 100px; height: 100px; border-radius: 50%; background: rgba(16, 185, 129, 0.1); border: 2px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; animation: pulse 2s infinite;">
+                        <span style="font-size: 32px;">🎤</span>
+                    </div>
+                    <h3 style="color: #f8fafc; margin-bottom: 10px;">Listening to your response</h3>
+                    <p style="color: #64748b; font-size: 14px; margin-bottom: 30px;">Explain clearly — the examiner will follow up on whatever you say next.</p>
+                    
+                    <div style="display: flex; justify-content: center; gap: 4px; height: 30px; align-items: flex-end; margin-bottom: 30px;" id="waveform">
+                        <div style="width: 4px; background: #10b981; height: 40%; animation: eq 1.2s infinite ease-in-out alternate;"></div>
+                        <div style="width: 4px; background: #10b981; height: 80%; animation: eq 0.8s infinite ease-in-out alternate;"></div>
+                        <div style="width: 4px; background: #10b981; height: 60%; animation: eq 1.0s infinite ease-in-out alternate;"></div>
+                        <div style="width: 4px; background: #10b981; height: 100%; animation: eq 0.7s infinite ease-in-out alternate;"></div>
+                        <div style="width: 4px; background: #10b981; height: 30%; animation: eq 1.1s infinite ease-in-out alternate;"></div>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; color: #cbd5e1; font-family: monospace; text-align: left; min-height: 80px;" id="live-transcript">
+                        "..."
+                    </div>
+                    
+                    <button id="btn-stop-record" style="margin-top: 30px; background: transparent; border: none; color: #64748b; text-decoration: underline; cursor: pointer;">End interview early</button>
+                </div>
+            `;
+            
+            document.getElementById('btn-stop-record').onclick = () => {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(t => t.stop());
+            };
+
+        } catch (err) {
+            alert("Microphone access denied or unavailable.");
         }
     };
 };
 
-async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl, promptEl, controls, docId, studentId) {
-    statusEl.innerText = "Transcribing and evaluating your response via Whisper & LLM...";
-    promptEl.innerText = "";
+async function submitInterviewAudio(audioBlob, subject, originalPrompt, docId, studentId) {
+    const interviewBody = document.getElementById('interview-body');
+    const statusTag = document.getElementById('interview-status-tag');
+    
+    interviewBody.innerHTML = '<div style="color: #cbd5e1; text-align: center; margin-top: 20px;">Transcribing and evaluating via Whisper & LLM...</div>';
+    statusTag.innerText = "Evaluating...";
+    statusTag.style.color = "#f59e0b";
 
     const formData = new FormData();
     formData.append('audio', audioBlob, 'response.webm');
@@ -1506,14 +1583,95 @@ async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl
 
         if (!response.ok) throw new Error("Evaluation failed.");
         const result = await response.json();
+        
+        statusTag.innerText = "Reviewed";
+        statusTag.style.color = "#94a3b8";
 
-        promptEl.innerHTML = `
-            <div style="font-size: 14px; color: #94a3b8; margin-bottom: 15px;">Your Transcript: "${result.transcription}"</div>
-            <div style="color: ${result.score >= 70 ? '#10b981' : '#ef4444'}; font-weight: bold; margin-bottom: 10px;">Score: ${result.score}/100</div>
-            <div style="font-style: italic; color: #f8fafc;">"${result.ai_voice_response}"</div>
+        // Parse result
+        const rubricsHTML = Object.entries(result.rubric || {}).map(([key, val]) => `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="color: #cbd5e1; font-size: 13px;">${key}</span>
+                <div style="display: flex; align-items: center; gap: 10px; width: 60%;">
+                    <div style="flex-grow: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                        <div style="width: ${val}%; height: 100%; background: ${val >= 70 ? '#10b981' : '#ef4444'};"></div>
+                    </div>
+                    <span style="color: #64748b; font-size: 12px; width: 30px; text-align: right;">${val}%</span>
+                </div>
+            </div>
+        `).join('');
+
+        // Render Result State UI
+        interviewBody.innerHTML = `
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Examiner Chat -->
+                <div style="display: flex; gap: 15px;">
+                    <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0;">AI</div>
+                    <div>
+                        <div style="font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Examiner</div>
+                        <div style="color: #cbd5e1; line-height: 1.5; font-size: 14px;">"${originalPrompt}"</div>
+                    </div>
+                </div>
+                
+                <!-- Student Chat -->
+                <div style="display: flex; gap: 15px; margin-left: 20px;">
+                    <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(59, 130, 246, 0.2); color: #60a5fa; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0;">S</div>
+                    <div>
+                        <div style="font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Your Response</div>
+                        <div style="color: #94a3b8; font-family: monospace; line-height: 1.5; font-size: 13px;">"${result.transcription}"</div>
+                    </div>
+                </div>
+                
+                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 10px 0;"/>
+                
+                <!-- Diagnostic Box -->
+                <div style="display: flex; gap: 20px; align-items: flex-start;">
+                    <!-- Donut Score -->
+                    <div style="width: 80px; height: 80px; border-radius: 50%; border: 4px solid ${result.score >= 70 ? '#10b981' : '#f59e0b'}; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box;">
+                        <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">${result.score}</div>
+                        <div style="font-size: 10px; color: #64748b;">/ 100</div>
+                    </div>
+                    
+                    <div style="flex-grow: 1;">
+                        ${result.conceptual_gap ? '<div style="display: inline-block; background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-bottom: 8px;">⚠️ Conceptual gap confirmed</div>' : ''}
+                        <h3 style="color: #f8fafc; margin: 0 0 10px 0; font-size: 18px;">${result.feedback_title || 'Evaluation'}</h3>
+                    </div>
+                </div>
+                
+                <!-- Rubrics -->
+                <div style="margin-top: 10px;">
+                    ${rubricsHTML}
+                </div>
+                
+                <!-- What to Fix -->
+                ${result.what_to_fix ? `
+                    <div style="background: rgba(16, 185, 129, 0.05); border-left: 3px solid #10b981; padding: 15px; border-radius: 0 8px 8px 0; margin-top: 10px;">
+                        <div style="font-size: 11px; color: #10b981; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 6px;">What to fix</div>
+                        <div style="color: #cbd5e1; font-size: 14px; line-height: 1.5;">${result.what_to_fix}</div>
+                    </div>
+                ` : ''}
+                
+                <!-- CTA -->
+                ${result.deploy_sandbox ? `
+                    <div style="margin-top: 20px; display: flex; gap: 10px;">
+                        <button id="btn-deploy-drills" style="background: rgba(16, 185, 129, 0.8); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">View targeted drills &rarr;</button>
+                        <button onclick="document.getElementById('interview-modal').remove()" style="background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 6px; cursor: pointer;">Close</button>
+                    </div>
+                ` : `
+                    <div style="margin-top: 20px;">
+                        <button onclick="document.getElementById('interview-modal').remove()" style="background: rgba(59, 130, 246, 0.8); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">Close & Continue</button>
+                    </div>
+                `}
+            </div>
         `;
-
-        statusEl.innerText = result.deploy_sandbox ? "Action Required!" : "Interview Passed.";
+        
+        // Attach event listener for the drills button
+        const drillsBtn = document.getElementById('btn-deploy-drills');
+        if (drillsBtn) {
+            drillsBtn.onclick = () => {
+                document.getElementById('interview-modal').remove();
+                deploySandboxDrop(subject, result.sandbox_task_title, result.sandbox_task_desc);
+            };
+        }
 
         // Save interview results to Firestore
         console.log("Attempting to save interview...", { docId, studentId, result });
@@ -1524,7 +1682,10 @@ async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl
                         prompt: originalPrompt,
                         transcription: result.transcription,
                         score: result.score,
-                        feedback: result.ai_voice_response,
+                        feedback_title: result.feedback_title,
+                        conceptual_gap: result.conceptual_gap,
+                        rubric: result.rubric,
+                        what_to_fix: result.what_to_fix,
                         passed: !result.deploy_sandbox,
                         timestamp: new Date().toISOString()
                     })
@@ -1542,15 +1703,8 @@ async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl
             window.speechSynthesis.speak(msg);
         }
 
-        if (result.deploy_sandbox) {
-            setTimeout(() => {
-                document.getElementById('interview-modal').style.display = 'none';
-                deploySandboxDrop(subject, result.sandbox_task_title, result.sandbox_task_desc);
-            }, 6000); // give them 6 seconds to hear the AI drop the sandbox
-        }
-
     } catch (e) {
-        statusEl.innerText = "Error: " + e.message;
+        interviewBody.innerHTML = `<div style="color: #ef4444; padding: 20px; text-align: center;">Error: ${e.message}</div>`;
     }
 }
 

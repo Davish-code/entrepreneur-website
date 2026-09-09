@@ -108,13 +108,16 @@ async def evaluate_interview(
         "You are an encouraging academic tutor evaluating a student's verbal answer to a conceptual question. "
         "Evaluate the transcript based on whether they demonstrate a solid core understanding of the topic. "
         "Do not penalize them for minor misspeaks or lack of exact numbers if the main idea is correct. "
-        "2. Did they sound hesitant or use excessive filler words (um, uh, like)? "
-        "Output ONLY a valid JSON object with these exact keys: "
-        "\"score\" (integer 0-100), "
-        "\"deploy_sandbox\" (boolean, true if score < 70), "
-        "\"ai_voice_response\" (string, strict feedback to the user), "
-        "\"sandbox_task_title\" (string, a short title for a hands-on coding task based on what they failed, or null if passed), "
-        "\"sandbox_task_desc\" (string, a 1-sentence instruction for a coding task based on what they failed, or null if passed)."
+        "Output ONLY a valid JSON object with these exact keys:\n"
+        "\"score\" (integer 0-100),\n"
+        "\"feedback_title\" (string, a short catchy heading for the feedback like 'Right method, wrong conversion' or 'Excellent conceptual grasp'),\n"
+        "\"conceptual_gap\" (boolean, true if score < 70 indicating a fundamental misunderstanding),\n"
+        "\"rubric\" (a JSON object with exactly 3 string keys representing specific skills tested, mapped to an integer 0-100. e.g., {'Reasoning approach': 88, 'Numeric accuracy': 22, 'Topic mastery': 15}),\n"
+        "\"what_to_fix\" (string, a short, specific actionable paragraph of feedback telling the student exactly what they got wrong and how to fix it),\n"
+        "\"deploy_sandbox\" (boolean, true if score < 70),\n"
+        "\"ai_voice_response\" (string, friendly feedback spoken back to the user),\n"
+        "\"sandbox_task_title\" (string, short title for a hands-on coding task based on what they failed, or null if passed),\n"
+        "\"sandbox_task_desc\" (string, a 1-sentence instruction for a coding task, or null if passed)."
     )
     
     try:
