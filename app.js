@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { db, auth, onAuthStateChanged, signOut, collection, addDoc, serverTimestamp, getDocs, doc, setDoc, getDoc, updateDoc, arrayUnion, query, where, limit } from "./firebase-config.js";
 
 const AI_API_BASE_URL = "https://complications-radiation-russia-wilson.trycloudflare.com";
@@ -37,7 +38,7 @@ async function initDashboard() {
     // Fetch user info from Firestore first
     let company = 'Guest Client';
     let selectedModule = 'oee';
-    
+
     try {
         const q = query(collection(db, "enterprise_pilots"), where("uid", "==", currentUser.uid), limit(1));
         const querySnapshot = await getDocs(q);
@@ -49,7 +50,7 @@ async function initDashboard() {
             company = localStorage.getItem('companyName') || company;
             selectedModule = localStorage.getItem('selectedModule') || selectedModule;
         }
-    } catch(e) {
+    } catch (e) {
         console.error("Error fetching user info:", e);
         company = localStorage.getItem('companyName') || company;
         selectedModule = localStorage.getItem('selectedModule') || selectedModule;
@@ -94,7 +95,7 @@ async function initDashboard() {
                 breadcrumb.innerText = 'Academic Portal > Student Details';
                 injectStudentDetailsUI(content);
             });
-            
+
             navAnalytics.addEventListener('click', (e) => {
                 e.preventDefault();
                 navAnalytics.classList.add('active');
@@ -110,7 +111,7 @@ async function initDashboard() {
         if (dashboardLogo) dashboardLogo.innerHTML = 'Venture<span>OS</span>';
         if (breadcrumb) breadcrumb.innerText = 'Industrial Portal > Overview';
         if (navHome) navHome.innerText = 'Plant Overview';
-        
+
         if (selectedModule === 'vision') {
             injectVisionUI(content);
         } else if (selectedModule === 'predictive') {
@@ -140,30 +141,30 @@ function injectAcademicUI(container) {
             // Fetch all students for this user
             const studentsQuery = query(collection(db, "eduflow"), where("uid", "==", currentUser.uid));
             const studentsSnap = await getDocs(studentsQuery);
-            
+
             let totalMarks = 0;
             let totalAttendance = 0;
             let subjectCount = 0;
             let studentsCount = 0;
-            
+
             let criticalAlerts = [];
-            
+
             const diagnosticsPromises = [];
 
             studentsSnap.forEach(docSnap => {
                 const data = docSnap.data();
                 studentsCount++;
-                
+
                 // Calculate averages & generate alerts
                 if (data.subjects && data.subjects.length > 0) {
                     data.subjects.forEach(s => {
                         const mark = parseFloat(s.marks) || 0;
                         const att = parseFloat(s.attendance) || 0;
-                        
+
                         totalMarks += mark;
                         totalAttendance += att;
                         subjectCount++;
-                        
+
                         if (mark < 40) {
                             criticalAlerts.push(`<b>${data.name}</b> is failing ${s.subject} (Score: ${mark}). Review suggested.`);
                         }
@@ -172,7 +173,7 @@ function injectAcademicUI(container) {
                         }
                     });
                 }
-                
+
                 // Queue diagnostic fetch
                 const diagQuery = query(collection(db, "students", docSnap.id, "diagnostics"), where("uid", "==", currentUser.uid));
                 diagnosticsPromises.push(getDocs(diagQuery).then(snap => {
@@ -189,7 +190,7 @@ function injectAcademicUI(container) {
             // Calculate overall metrics
             const avgMarks = subjectCount > 0 ? (totalMarks / subjectCount).toFixed(1) : 0;
             const avgAttendance = subjectCount > 0 ? (totalAttendance / subjectCount).toFixed(1) : 0;
-            
+
             // Generate Alerts HTML
             let alertsHTML = '';
             if (criticalAlerts.length > 0) {
@@ -207,21 +208,21 @@ function injectAcademicUI(container) {
             // Resolve all diagnostics
             const allDiagnosticsArrays = await Promise.all(diagnosticsPromises);
             let allDiagnostics = allDiagnosticsArrays.flat();
-            
+
             // Sort by date descending
             allDiagnostics.sort((a, b) => {
                 const getMs = (t) => t ? (typeof t.toMillis === 'function' ? t.toMillis() : new Date(t).getTime()) : 0;
                 return getMs(b.created_at) - getMs(a.created_at);
             });
-            
+
             // Generate Diagnostics Stream HTML
             let diagnosticsStreamHTML = '';
             if (allDiagnostics.length > 0) {
                 allDiagnostics.slice(0, 3).forEach(d => {
                     let dateStr = 'Just now';
                     if (d.created_at) {
-                        dateStr = typeof d.created_at.toDate === 'function' 
-                            ? d.created_at.toDate().toLocaleString() 
+                        dateStr = typeof d.created_at.toDate === 'function'
+                            ? d.created_at.toDate().toLocaleString()
                             : new Date(d.created_at).toLocaleString();
                     }
                     diagnosticsStreamHTML += `
@@ -484,7 +485,7 @@ function injectPredictiveUI(container) {
 // --- STUDENT DETAILS FIREBASE UI ---
 let subjectCounter = 1;
 
-window.addSubjectRow = function() {
+window.addSubjectRow = function () {
     subjectCounter++;
     const container = document.getElementById('subjects-container');
     if (!container) return;
@@ -501,12 +502,12 @@ window.addSubjectRow = function() {
     container.appendChild(row);
 };
 
-window.removeSubjectRow = function(rowId) {
+window.removeSubjectRow = function (rowId) {
     const row = document.getElementById(rowId);
     if (row) row.remove();
 };
 
-window.submitStudentForm = async function(event) {
+window.submitStudentForm = async function (event) {
     event.preventDefault();
     const btn = document.getElementById('add-student-btn');
     btn.innerText = "Adding...";
@@ -564,7 +565,7 @@ window.submitStudentForm = async function(event) {
 };
 
 // Load a clickable list of students (not full details)
-window.loadStudentsList = async function() {
+window.loadStudentsList = async function () {
     const listContainer = document.getElementById('students-list');
     if (!listContainer) return;
 
@@ -602,7 +603,7 @@ window.loadStudentsList = async function() {
 };
 
 // Show full details of a single student
-window.showStudentDetail = async function(docId) {
+window.showStudentDetail = async function (docId) {
     const content = document.getElementById('dashboard-content');
     if (!content) return;
 
@@ -695,7 +696,7 @@ window.showStudentDetail = async function(docId) {
                 const diagQuery = query(collection(db, "students", docId, "diagnostics"), where("uid", "==", currentUser.uid));
                 const diagSnap = await getDocs(diagQuery);
                 let historyHTML = '';
-                
+
                 if (!diagSnap.empty) {
                     const docs = [];
                     diagSnap.forEach(d => docs.push({ id: d.id, ...d.data() }));
@@ -704,12 +705,12 @@ window.showStudentDetail = async function(docId) {
                         const getMs = (t) => t ? (typeof t.toMillis === 'function' ? t.toMillis() : new Date(t).getTime()) : 0;
                         return getMs(b.created_at) - getMs(a.created_at);
                     });
-                    
+
                     docs.forEach(d => {
                         let dateStr = 'Just now';
                         if (d.created_at) {
-                            dateStr = typeof d.created_at.toDate === 'function' 
-                                ? d.created_at.toDate().toLocaleString() 
+                            dateStr = typeof d.created_at.toDate === 'function'
+                                ? d.created_at.toDate().toLocaleString()
                                 : new Date(d.created_at).toLocaleString();
                         }
                         historyHTML += `
@@ -728,16 +729,19 @@ window.showStudentDetail = async function(docId) {
                                         <button style="background: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; font-size: 13px;" onmouseover="this.style.background='#3b82f6'; this.style.color='#fff';" onmouseout="this.style.background='rgba(59, 130, 246, 0.1)'; this.style.color='#60a5fa';" onclick="startVirtualInterview(this)" data-subject="${d.subject}" data-report="${btoa(unescape(encodeURIComponent(d.analysis_report || '')))}" data-docid="${d.id}" data-studentid="${docId}">
                                             Start Virtual Interview
                                         </button>
+                                        <button style="background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; font-size: 13px; margin-left: 10px;" onmouseover="this.style.background='#10b981'; this.style.color='#fff';" onmouseout="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#10b981';" onclick="downloadDiagnosticReport(this)" data-docid="${d.id}" data-studentid="${docId}">
+                                            Download Detailed Report
+                                        </button>
                                     </div>
                                     ${(() => {
-                                        let allInterviews = d.interviews || [];
-                                        if (d.interview) allInterviews = [d.interview, ...allInterviews];
-                                        
-                                        if (allInterviews.length === 0) return '';
-                                        
-                                        let html = '<div style="margin-top: 20px;"><h4 style="color: #60a5fa; margin-bottom: 10px; font-size: 14px;">Virtual Interview History</h4>';
-                                        allInterviews.forEach((inv, index) => {
-                                            html += `
+                                let allInterviews = d.interviews || [];
+                                if (d.interview) allInterviews = [d.interview, ...allInterviews];
+
+                                if (allInterviews.length === 0) return '';
+
+                                let html = '<div style="margin-top: 20px;"><h4 style="color: #60a5fa; margin-bottom: 10px; font-size: 14px;">Virtual Interview History</h4>';
+                                allInterviews.forEach((inv, index) => {
+                                    html += `
                                             <div style="margin-top: 12px; padding: 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(0,0,0,0.2);">
                                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                                                     <strong style="color: #cbd5e1; font-size: 13px;">Attempt #${allInterviews.length - index}</strong>
@@ -747,10 +751,10 @@ window.showStudentDetail = async function(docId) {
                                                 <div style="font-size: 13px; color: #cbd5e1; margin-bottom: 8px;"><b>Student:</b> "${inv.transcription}"</div>
                                                 <div style="font-size: 13px; font-style: italic; color: #f8fafc;"><b>AI Feedback:</b> "${inv.feedback}"</div>
                                             </div>`;
-                                        });
-                                        html += '</div>';
-                                        return html;
-                                    })()}
+                                });
+                                html += '</div>';
+                                return html;
+                            })()}
                                 </div>
                             </details>
                         `;
@@ -825,12 +829,12 @@ window.injectStudentDetailsUI = function injectStudentDetailsUI(container) {
 // ----------------------------------------------------
 // Edit Student Logic
 // ----------------------------------------------------
-window.editStudentUI = async function(docId) {
+window.editStudentUI = async function (docId) {
     const content = document.getElementById('dashboard-content');
     if (!content) return;
-    
+
     content.innerHTML = '<div style="grid-column:span 2; text-align:center; padding:40px; color:var(--text-muted);">Loading student data for edit...</div>';
-    
+
     try {
         const docSnap = await getDoc(doc(db, "eduflow", docId));
         if (!docSnap.exists() || docSnap.data().uid !== currentUser.uid) {
@@ -838,10 +842,10 @@ window.editStudentUI = async function(docId) {
             return;
         }
         const data = docSnap.data();
-        
+
         let subjectRowsHTML = '';
         window.editSubjectCounter = 0;
-        
+
         if (Array.isArray(data.subjects) && data.subjects.length > 0) {
             data.subjects.forEach((s) => {
                 window.editSubjectCounter++;
@@ -909,7 +913,7 @@ window.editStudentUI = async function(docId) {
     }
 };
 
-window.addEditSubjectRow = function() {
+window.addEditSubjectRow = function () {
     window.editSubjectCounter++;
     const container = document.getElementById('edit-subjects-container');
     if (!container) return;
@@ -926,12 +930,12 @@ window.addEditSubjectRow = function() {
     container.appendChild(row);
 };
 
-window.removeEditSubjectRow = function(rowId) {
+window.removeEditSubjectRow = function (rowId) {
     const row = document.getElementById(rowId);
     if (row) row.remove();
 };
 
-window.submitEditStudentForm = async function(event, docId) {
+window.submitEditStudentForm = async function (event, docId) {
     event.preventDefault();
     const btn = document.getElementById('save-edit-btn');
     btn.innerText = "Saving...";
@@ -967,10 +971,10 @@ window.submitEditStudentForm = async function(event, docId) {
 };
 
 // --- AI GAP ANALYSIS MODAL LOGIC ---
-window.openAnalysisModal = function(subject, marks, attendance, name, regNo, docId) {
+window.openAnalysisModal = function (subject, marks, attendance, name, regNo, docId) {
     const modal = document.getElementById('analysis-modal');
     if (!modal) return;
-    
+
     // Store data for submission
     modal.dataset.studentDocId = docId;
     modal.dataset.subject = subject;
@@ -978,11 +982,11 @@ window.openAnalysisModal = function(subject, marks, attendance, name, regNo, doc
     modal.dataset.attendance = attendance;
     modal.dataset.name = name;
     modal.dataset.regNo = regNo;
-    
+
     document.getElementById('analysis-subtitle').innerText = `Diagnosing ${subject} for ${name} (${regNo})`;
     document.getElementById('analysis-score-badge').innerText = `Score: ${marks}/100`;
     document.getElementById('analysis-attend-badge').innerText = `Attendance: ${attendance}`;
-    
+
     // Reset state
     document.getElementById('notes-upload-label').innerText = 'Upload Professor Notes / Syllabus (Optional PDF)';
     document.getElementById('script-upload-label').innerText = 'Upload Student CAT-1 Answer Sheet (Mandatory PDF)';
@@ -990,39 +994,39 @@ window.openAnalysisModal = function(subject, marks, attendance, name, regNo, doc
     document.getElementById('analysis-loading').querySelector('p').innerText = 'Analyzing student answer script against syllabus...';
     document.getElementById('analysis-results').style.display = 'none';
     document.getElementById('run-analysis-btn').style.display = 'block';
-    
+
     document.getElementById('professor-notes-upload').value = '';
     document.getElementById('answer-script-upload').value = '';
-    
+
     modal.style.display = 'flex';
 };
 
-window.closeAnalysisModal = function() {
+window.closeAnalysisModal = function () {
     const modal = document.getElementById('analysis-modal');
     if (modal) modal.style.display = 'none';
 };
 
-window.handleNotesUpload = function(event) {
+window.handleNotesUpload = function (event) {
     const file = event.target.files[0];
     if (file) {
         document.getElementById('notes-upload-label').innerText = file.name;
     }
 };
 
-window.handleScriptUpload = function(event) {
+window.handleScriptUpload = function (event) {
     const file = event.target.files[0];
     if (file) {
         document.getElementById('script-upload-label').innerText = file.name;
     }
 };
 
-window.runSubjectAnalysis = async function() {
+window.runSubjectAnalysis = async function () {
     const modal = document.getElementById('analysis-modal');
     if (!modal) return;
 
     const answerScriptInput = document.getElementById('answer-script-upload');
     const professorNotesInput = document.getElementById('professor-notes-upload');
-    
+
     const scriptFile = answerScriptInput.files[0];
     const notesFile = professorNotesInput.files[0];
 
@@ -1034,7 +1038,7 @@ window.runSubjectAnalysis = async function() {
     const runBtn = document.getElementById('run-analysis-btn');
     const loading = document.getElementById('analysis-loading');
     const results = document.getElementById('analysis-results');
-    
+
     runBtn.style.display = 'none';
     loading.style.display = 'block';
     results.style.display = 'none';
@@ -1048,7 +1052,7 @@ window.runSubjectAnalysis = async function() {
         formData.append("marks", parseInt(modal.dataset.marks, 10) || 0);
         formData.append("attendance", parseInt(modal.dataset.attendance.replace('%', ''), 10) || 0);
         formData.append("answer_script", scriptFile);
-        
+
         if (notesFile) {
             formData.append("professor_notes", notesFile);
         }
@@ -1057,13 +1061,13 @@ window.runSubjectAnalysis = async function() {
             method: "POST",
             body: formData
         });
-        
+
         if (!response.ok) {
             throw new Error(`API returned status: ${response.status}`);
         }
 
         const data = await response.json();
-        
+
         if (data.analysis) {
             // Save AI text to Firestore
             const docRef = await addDoc(collection(db, "students", modal.dataset.studentDocId, "diagnostics"), {
@@ -1099,16 +1103,16 @@ window.runSubjectAnalysis = async function() {
 function parseMarkdown(md) {
     if (!md) return '';
     let html = md;
-    
+
     // Headers (# to ####)
     html = html.replace(/^#### (.*$)/gim, '<h4 style="color: #f8fafc; font-weight: 600; margin-top: 12px; margin-bottom: 8px;">$1</h4>');
     html = html.replace(/^### (.*$)/gim, '<h3 style="color: #f8fafc; font-weight: 600; margin-top: 14px; margin-bottom: 8px;">$1</h3>');
     html = html.replace(/^## (.*$)/gim, '<h2 style="color: #f8fafc; font-weight: 700; margin-top: 16px; margin-bottom: 10px;">$1</h2>');
     html = html.replace(/^# (.*$)/gim, '<h1 style="color: #f8fafc; font-weight: 700; margin-top: 20px; margin-bottom: 12px; font-size: 20px;">$1</h1>');
-    
+
     // Bold
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    
+
     // Bullet points
     html = html.replace(/^[-*]\s+(.*$)/gim, '<p style="margin-bottom: 6px; color: #94a3b8; display: flex;"><span style="margin-right:8px;">•</span><span>$1</span></p>');
 
@@ -1118,7 +1122,7 @@ function parseMarkdown(md) {
     return html;
 }
 
-window.injectAnalyticsUI = function(container) {
+window.injectAnalyticsUI = function (container) {
     if (!container) return;
     container.innerHTML = `
         <div style="grid-column: span 2; display:flex; flex-direction:column; justify-content:center; align-items:center; height: 300px; gap:20px;">
@@ -1139,16 +1143,16 @@ window.injectAnalyticsUI = function(container) {
     }, 0);
 };
 
-window.loadAnalyticsData = async function(container) {
+window.loadAnalyticsData = async function (container) {
     // 1. Fetch Students & Diagnostics
     const studentsQuery = query(collection(db, "eduflow"), where("uid", "==", currentUser.uid));
     const studentsSnap = await getDocs(studentsQuery);
-    
+
     const diagnosticsPromises = [];
     studentsSnap.forEach(docSnap => {
         const studentData = docSnap.data();
         const diagQuery = query(collection(db, "students", docSnap.id, "diagnostics"), where("uid", "==", currentUser.uid));
-        
+
         diagnosticsPromises.push(getDocs(diagQuery).then(snap => {
             const docs = [];
             snap.forEach(d => {
@@ -1160,33 +1164,33 @@ window.loadAnalyticsData = async function(container) {
             return docs;
         }));
     });
-    
+
     const allDiagsArrays = await Promise.all(diagnosticsPromises);
     const allDiags = allDiagsArrays.flat();
-    
+
     // Check if empty
     if (allDiags.length === 0) {
         container.innerHTML = '<div style="grid-column:span 2; padding:40px; text-align:center; color:var(--text-muted);">No diagnostic data available to analyze.</div>';
         return;
     }
-    
+
     // Group Data for Module 1
     const subjectStats = {};
     const scatterData = [];
     const highRiskStudents = [];
-    
+
     allDiags.forEach(diag => {
         const subject = diag.subject || 'Unknown';
         const marks = parseFloat(diag.marks) || 0;
         const attend = parseFloat(diag.attendance) || 0;
-        
+
         if (!subjectStats[subject]) subjectStats[subject] = { totalMarks: 0, count: 0 };
         subjectStats[subject].totalMarks += marks;
         subjectStats[subject].count++;
-        
+
         // Scatter plot dataset
         scatterData.push({ x: attend, y: marks, r: 5 });
-        
+
         if (marks < 50 || attend < 75) {
             highRiskStudents.push({
                 name: diag.studentName,
@@ -1197,10 +1201,10 @@ window.loadAnalyticsData = async function(container) {
             });
         }
     });
-    
+
     const barLabels = Object.keys(subjectStats);
     const barData = barLabels.map(s => (subjectStats[s].totalMarks / subjectStats[s].count).toFixed(1));
-    
+
     // Generate High-Risk Table HTML
     let tableRows = '';
     if (highRiskStudents.length > 0) {
@@ -1220,7 +1224,7 @@ window.loadAnalyticsData = async function(container) {
     } else {
         tableRows = '<tr><td colspan="5" style="padding:20px; text-align:center; color:var(--text-muted);">No high-risk students found!</td></tr>';
     }
-    
+
     // Inject Layout
     container.innerHTML = `
         <style>
@@ -1263,7 +1267,7 @@ window.loadAnalyticsData = async function(container) {
             </table>
         </section>
     `;
-    
+
     // Render Charts
     const ctxBar = document.getElementById('gap-bar-chart');
     if (ctxBar) {
@@ -1301,7 +1305,7 @@ window.loadAnalyticsData = async function(container) {
             }
         });
     }
-    
+
     const ctxScatter = document.getElementById('corr-scatter-chart');
     if (ctxScatter) {
         new Chart(ctxScatter, {
@@ -1321,7 +1325,7 @@ window.loadAnalyticsData = async function(container) {
                     legend: { display: false },
                     tooltip: {
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 return `Marks: ${context.raw.y}, Attendance: ${context.raw.x}%`;
                             }
                         }
@@ -1353,13 +1357,13 @@ window.loadAnalyticsData = async function(container) {
 // ==========================================
 const INTERVIEW_API_BASE_URL = "https://onion-drugs-robust-nancy.trycloudflare.com";
 
-window.startVirtualInterview = async function(button) {
+window.startVirtualInterview = async function (button) {
     const subject = button.getAttribute('data-subject');
     const reportBase64 = button.getAttribute('data-report');
     const docId = button.getAttribute('data-docid');
     const studentId = button.getAttribute('data-studentid');
     const report = decodeURIComponent(escape(atob(reportBase64)));
-    
+
     // Create Modal UI if it doesn't exist
     let modal = document.getElementById('interview-modal');
     if (!modal) {
@@ -1388,19 +1392,19 @@ window.startVirtualInterview = async function(button) {
         `;
         document.body.appendChild(modal);
     }
-    
+
     modal.style.display = 'flex';
     const statusEl = document.getElementById('interview-status');
     const promptEl = document.getElementById('interview-prompt');
     const controls = document.getElementById('record-controls');
     const btnRecord = document.getElementById('btn-record');
-    
+
     statusEl.innerText = "Analyzing CAT report & generating prompt...";
     promptEl.innerText = "";
     controls.style.display = 'none';
-    
+
     let originalPromptText = "";
-    
+
     try {
         // 1. Generate Interview Prompt
         const response = await fetch(`${INTERVIEW_API_BASE_URL}/api/generate-interview`, {
@@ -1408,15 +1412,15 @@ window.startVirtualInterview = async function(button) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ analysis_report: report, subject: subject })
         });
-        
+
         if (!response.ok) throw new Error("Failed to generate prompt. Ensure backend is running.");
-        
+
         const data = await response.json();
         originalPromptText = data.prompt_text;
-        
+
         statusEl.innerText = "AI is speaking...";
         promptEl.innerText = `"${originalPromptText}"`;
-        
+
         // Play AI Voice
         if (data.audio_base64) {
             const audio = new Audio(data.audio_base64);
@@ -1436,17 +1440,17 @@ window.startVirtualInterview = async function(button) {
             statusEl.innerText = "Your turn. Click below to start answering.";
             controls.style.display = 'block';
         }
-        
+
     } catch (e) {
         statusEl.innerText = "Error: " + e.message;
         return;
     }
-    
+
     // 2. Recording Logic
     let mediaRecorder;
     let audioChunks = [];
     let isRecording = false;
-    
+
     btnRecord.onclick = async () => {
         if (!isRecording) {
             // Start Recording
@@ -1454,22 +1458,22 @@ window.startVirtualInterview = async function(button) {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 mediaRecorder = new MediaRecorder(stream);
                 audioChunks = [];
-                
+
                 mediaRecorder.ondataavailable = event => {
                     audioChunks.push(event.data);
                 };
-                
+
                 mediaRecorder.onstop = async () => {
                     const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-                     submitInterviewAudio(audioBlob, subject, originalPromptText, statusEl, promptEl, controls, docId, studentId);
-        };
-                
+                    submitInterviewAudio(audioBlob, subject, originalPromptText, statusEl, promptEl, controls, docId, studentId);
+                };
+
                 mediaRecorder.start();
                 isRecording = true;
                 btnRecord.innerHTML = "Stop Recording";
                 btnRecord.style.background = "#3b82f6"; // blue
                 statusEl.innerText = "Recording... Speak clearly.";
-                
+
             } catch (err) {
                 alert("Microphone access denied or unavailable.");
             }
@@ -1488,27 +1492,27 @@ window.startVirtualInterview = async function(button) {
 async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl, promptEl, controls, docId, studentId) {
     statusEl.innerText = "Transcribing and evaluating your response via Whisper & LLM...";
     promptEl.innerText = "";
-    
+
     const formData = new FormData();
     formData.append('audio', audioBlob, 'response.webm');
     formData.append('subject', subject);
     formData.append('original_prompt', originalPrompt);
-    
+
     try {
         const response = await fetch(`${INTERVIEW_API_BASE_URL}/api/evaluate-interview`, {
             method: 'POST',
             body: formData
         });
-        
+
         if (!response.ok) throw new Error("Evaluation failed.");
         const result = await response.json();
-        
+
         promptEl.innerHTML = `
             <div style="font-size: 14px; color: #94a3b8; margin-bottom: 15px;">Your Transcript: "${result.transcription}"</div>
             <div style="color: ${result.score >= 70 ? '#10b981' : '#ef4444'}; font-weight: bold; margin-bottom: 10px;">Score: ${result.score}/100</div>
             <div style="font-style: italic; color: #f8fafc;">"${result.ai_voice_response}"</div>
         `;
-        
+
         statusEl.innerText = result.deploy_sandbox ? "Action Required!" : "Interview Passed.";
 
         // Save interview results to Firestore
@@ -1529,7 +1533,7 @@ async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl
                 console.error("Error saving interview results:", err);
             }
         }
-        
+
         if (result.audio_base64) {
             const audio = new Audio(result.audio_base64);
             audio.play();
@@ -1537,14 +1541,14 @@ async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl
             const msg = new SpeechSynthesisUtterance(result.ai_voice_response);
             window.speechSynthesis.speak(msg);
         }
-        
+
         if (result.deploy_sandbox) {
             setTimeout(() => {
                 document.getElementById('interview-modal').style.display = 'none';
                 deploySandboxDrop(subject, result.sandbox_task_title, result.sandbox_task_desc);
             }, 6000); // give them 6 seconds to hear the AI drop the sandbox
         }
-        
+
     } catch (e) {
         statusEl.innerText = "Error: " + e.message;
     }
@@ -1553,11 +1557,11 @@ async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl
 function deploySandboxDrop(subject, taskTitle, taskDesc) {
     const container = document.getElementById('dashboard-content');
     if (!container) return;
-    
+
     // Default fallback if backend didn't provide one
     const title = taskTitle || "Secure Code Implementation";
     const desc = taskDesc || `Write a short script to demonstrate practical mastery of ${subject}.`;
-    
+
     const sandboxHTML = `
         <section class="card" id="sandbox-deployment" style="border: 2px solid #ef4444; background: rgba(239, 68, 68, 0.05); margin-bottom: 20px; animation: slideDown 0.5s ease-out;">
             <div style="display: flex; align-items: center; margin-bottom: 15px; color: #ef4444;">
@@ -1579,27 +1583,27 @@ function deploySandboxDrop(subject, taskTitle, taskDesc) {
             </div>
         </section>
     `;
-    
+
     // Inject at the top
     container.insertAdjacentHTML('afterbegin', sandboxHTML);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-window.submitSandboxCode = async function(btn, titleB64, descB64) {
+window.submitSandboxCode = async function (btn, titleB64, descB64) {
     const title = decodeURIComponent(escape(atob(titleB64)));
     const desc = decodeURIComponent(escape(atob(descB64)));
     const code = document.getElementById('sandbox-code-editor').value;
     const resultDiv = document.getElementById('sandbox-eval-result');
-    
+
     if (!code.trim()) {
         resultDiv.innerHTML = '<span style="color: #ef4444;">Please write some code first!</span>';
         return;
     }
-    
+
     btn.innerText = "Evaluating...";
     btn.disabled = true;
     resultDiv.innerHTML = '<span style="color: #60a5fa;">Running AI Code Analysis...</span>';
-    
+
     try {
         const response = await fetch(`${INTERVIEW_API_BASE_URL}/api/evaluate-sandbox-code`, {
             method: 'POST',
@@ -1612,11 +1616,11 @@ window.submitSandboxCode = async function(btn, titleB64, descB64) {
                 task_desc: desc
             })
         });
-        
+
         if (!response.ok) throw new Error("Evaluation failed");
-        
+
         const result = await response.json();
-        
+
         if (result.passed) {
             resultDiv.innerHTML = `<span style="color: #10b981; font-weight: bold;">PASSED ✓</span> <br/><span style="color: #94a3b8;">${result.feedback}</span>`;
             btn.style.display = 'none';
@@ -1625,10 +1629,193 @@ window.submitSandboxCode = async function(btn, titleB64, descB64) {
             btn.innerText = "Try Again";
             btn.disabled = false;
         }
-        
+
     } catch (e) {
         resultDiv.innerHTML = `<span style="color: #ef4444;">Error: ${e.message}</span>`;
         btn.innerText = "Run Code";
+        btn.disabled = false;
+    }
+};
+
+window.downloadDiagnosticReport = async function(btn) {
+    const docId = btn.getAttribute('data-docid');
+    const studentId = btn.getAttribute('data-studentid');
+    
+    if (!docId || !studentId) return alert("Missing document ID.");
+    
+    const originalText = btn.innerText;
+    btn.innerText = "Generating...";
+    btn.disabled = true;
+    
+    try {
+        const docRef = doc(db, "students", studentId, "diagnostics", docId);
+        const docSnap = await getDoc(docRef);
+        
+        if (!docSnap.exists()) throw new Error("Document not found");
+        
+        const data = docSnap.data();
+        let allInterviews = data.interviews || [];
+        if (data.interview) allInterviews = [data.interview, ...allInterviews];
+        
+        const studentName = document.getElementById('dashboard-title').innerText.replace('Details for ', '') || "Student";
+        
+        // Construct the interactive HTML report
+        const reportContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Report: ${data.subject}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 40px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; border-bottom: 1px solid #334155; padding-bottom: 20px; }
+        h1 { color: #60a5fa; margin: 0 0 10px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 40px; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+        .card h3 { color: #94a3b8; margin-top: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .chart-container { position: relative; height: 300px; width: 100%; display: flex; justify-content: center; align-items: center; }
+        .markdown-body { color: #cbd5e1; line-height: 1.6; font-size: 15px; }
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 { color: #f8fafc; margin-top: 1.5em; margin-bottom: 0.5em; }
+        .markdown-body strong { color: #fff; }
+        .markdown-body pre { background: #0f172a; padding: 15px; border-radius: 8px; overflow-x: auto; border: 1px solid #334155; }
+        .markdown-body code { font-family: 'Roboto Mono', monospace; color: #60a5fa; }
+        .interview-card { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .score-badge { float: right; font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .score-pass { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .score-fail { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Diagnostic Report: ${data.subject}</h1>
+            <p style="color: #94a3b8; font-size: 16px;">Student: ${studentName} | Date: ${new Date(data.created_at?.toDate() || Date.now()).toLocaleString()}</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="card">
+                <h3>Overall Performance</h3>
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Interview Attempts Tracker</h3>
+                <div class="chart-container">
+                    ${allInterviews.length > 0 ? '<canvas id="interviewChart"></canvas>' : '<p style="color: #64748b; text-align: center; width: 100%;">No interview attempts yet.</p>'}
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" style="margin-bottom: 40px;">
+            <h3>AI Diagnostic Analysis</h3>
+            <div class="markdown-body" id="analysis-content"></div>
+        </div>
+        
+        ${allInterviews.length > 0 ? `
+        <div class="card">
+            <h3>Interview Transcripts</h3>
+            ${allInterviews.map((inv, idx) => `
+                <div class="interview-card">
+                    <div class="score-badge ${inv.score >= 70 ? 'score-pass' : 'score-fail'}">Score: ${inv.score}/100</div>
+                    <h4 style="margin-top: 0; color: #60a5fa; margin-bottom: 10px;">Attempt #${allInterviews.length - idx}</h4>
+                    <div style="margin-bottom: 10px;"><strong>AI Prompt:</strong> <span style="color: #94a3b8;">${inv.prompt}</span></div>
+                    <div style="margin-bottom: 10px;"><strong>Student Transcription:</strong> <span style="color: #cbd5e1;">"${inv.transcription}"</span></div>
+                    <div><strong>AI Feedback:</strong> <i style="color: #e2e8f0;">"${inv.feedback}"</i></div>
+                </div>
+            `).join('')}
+        </div>
+        ` : ''}
+    </div>
+    
+    <script>
+        // Render Markdown
+        const rawMarkdown = ${JSON.stringify(data.analysis_report || '')};
+        document.getElementById('analysis-content').innerHTML = marked.parse(rawMarkdown);
+        
+        // Render Performance Chart
+        const perfCtx = document.getElementById('performanceChart').getContext('2d');
+        const marks = ${data.marks || 0};
+        new Chart(perfCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Score', 'Gap'],
+                datasets: [{
+                    data: [marks, 100 - marks],
+                    backgroundColor: ['#3b82f6', '#334155'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '75%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: '#cbd5e1' } }
+                }
+            }
+        });
+        
+        // Render Interview Chart
+        ${allInterviews.length > 0 ? `
+        const intCtx = document.getElementById('interviewChart').getContext('2d');
+        const scores = ${JSON.stringify([...allInterviews].reverse().map(i => i.score))};
+        const labels = scores.map((_, i) => 'Attempt ' + (i+1));
+        
+        new Chart(intCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Interview Score',
+                    data: scores,
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true,
+                    pointBackgroundColor: '#10b981',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, max: 100, grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+                    x: { grid: { color: 'transparent' }, ticks: { color: '#94a3b8' } }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+        ` : ''}
+    </script>
+</body>
+</html>`;
+
+        // Trigger Download
+        const blob = new Blob([reportContent], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Report_${data.subject.replace(/\s+/g, '_')}_${studentName.replace(/\s+/g, '_')}.html`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+    } catch (err) {
+        console.error(err);
+        alert("Failed to generate report: " + err.message);
+    } finally {
+        btn.innerText = originalText;
         btn.disabled = false;
     }
 };
