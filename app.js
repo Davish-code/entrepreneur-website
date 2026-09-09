@@ -1657,7 +1657,12 @@ window.downloadDiagnosticReport = async function(btn) {
         let allInterviews = data.interviews || [];
         if (data.interview) allInterviews = [data.interview, ...allInterviews];
         
-        const studentName = document.getElementById('dashboard-title').innerText.replace('Details for ', '') || "Student";
+        // Get the student's name from the eduflow document
+        let studentName = "Student";
+        try {
+            const studentDocSnap = await getDoc(doc(db, "eduflow", studentId));
+            if (studentDocSnap.exists()) studentName = studentDocSnap.data().name || "Student";
+        } catch (e) { /* fallback to "Student" */ }
         
         // Construct the interactive HTML report
         const reportContent = `
