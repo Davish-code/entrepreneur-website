@@ -1528,7 +1528,7 @@ async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl
         if (result.deploy_sandbox) {
             setTimeout(() => {
                 document.getElementById('interview-modal').style.display = 'none';
-                deploySandboxDrop(subject);
+                deploySandboxDrop(subject, result.sandbox_task_title, result.sandbox_task_desc);
             }, 6000); // give them 6 seconds to hear the AI drop the sandbox
         }
         
@@ -1537,22 +1537,31 @@ async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl
     }
 }
 
-function deploySandboxDrop(subject) {
+function deploySandboxDrop(subject, taskTitle, taskDesc) {
     const container = document.getElementById('dashboard-content');
     if (!container) return;
     
+    // Default fallback if backend didn't provide one
+    const title = taskTitle || "Secure Code Implementation";
+    const desc = taskDesc || `Write a short script to demonstrate practical mastery of ${subject}.`;
+    
     const sandboxHTML = `
-        <section class="card" style="grid-column: span 2; border: 2px solid #ef4444; box-shadow: 0 0 20px rgba(239, 68, 68, 0.2); animation: slideDown 0.5s ease-out;">
-            <h3 style="color: #ef4444; display: flex; align-items: center; gap: 10px;">
-                ⚠️ Sandbox Deployed: Immediate Action Required
-            </h3>
-            <p style="color: #cbd5e1; margin-bottom: 15px;">Your interview response failed to demonstrate practical application. You have been assigned a mandatory micro-project.</p>
-            <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 15px;">
-                <h4 style="color: #60a5fa; margin-bottom: 10px; font-family: 'Roboto Mono', monospace;">Task: Secure DB Fetch in Python</h4>
-                <p style="color: #94a3b8; font-size: 13px; margin-bottom: 15px;">Write a Python script that connects to a MySQL database using a connection string, executes a cursor query securely (preventing SQL injection), and prints the user records.</p>
-                <textarea style="width: 100%; height: 150px; background: #0f172a; color: #10b981; font-family: 'Roboto Mono', monospace; border: 1px solid #334155; border-radius: 4px; padding: 10px; resize: vertical;" placeholder="# Write your Python code here..."></textarea>
+        <section class="card" id="sandbox-deployment" style="border: 2px solid #ef4444; background: rgba(239, 68, 68, 0.05); margin-bottom: 20px; animation: slideDown 0.5s ease-out;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px; color: #ef4444;">
+                <span class="material-icons-outlined" style="margin-right: 10px;">warning</span>
+                <h3 style="margin: 0; color: #ef4444;">SANDBOX DEPLOYED: IMMEDIATE ACTION REQUIRED</h3>
+            </div>
+            <p style="color: #cbd5e1; font-size: 14px; line-height: 1.5; margin-bottom: 20px;">
+                Your interview response failed to demonstrate practical application. You have been assigned a mandatory micro-project.
+            </p>
+            
+            <div style="background: #1e293b; border-radius: 8px; padding: 20px; border: 1px solid #334155;">
+                <h4 style="color: #60a5fa; margin-top: 0; margin-bottom: 10px;">Task: ${title}</h4>
+                <p style="color: #94a3b8; font-size: 13px; margin-bottom: 15px;">${desc}</p>
+                <textarea id="sandbox-code-editor" style="width: 100%; height: 150px; background: #0f172a; color: #10b981; font-family: 'Roboto Mono', monospace; border: 1px solid #334155; border-radius: 4px; padding: 10px; resize: vertical;" placeholder="# Write your code here..."></textarea>
+                <div id="sandbox-eval-result" style="margin-top: 10px; font-size: 13px;"></div>
                 <div style="text-align: right; margin-top: 10px;">
-                    <button class="upgrade-btn" style="background: #ef4444; color: white; border: none; padding: 8px 20px;" onclick="alert('Evaluating code...')">Run Code</button>
+                    <button class="upgrade-btn" style="background: #ef4444; color: white; border: none; padding: 8px 20px;" onclick="submitSandboxCode(this, '${btoa(unescape(encodeURIComponent(title)))}', '${btoa(unescape(encodeURIComponent(desc)))}')">Run Code</button>
                 </div>
             </div>
         </section>
@@ -1562,3 +1571,51 @@ function deploySandboxDrop(subject) {
     container.insertAdjacentHTML('afterbegin', sandboxHTML);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+window.submitSandboxCode = async function(btn, titleB64, descB64) {
+    const title = decodeURIComponent(escape(atob(titleB64)));
+    const desc = decodeURIComponent(escape(atob(descB64)));
+    const code = document.getElementById('sandbox-code-editor').value;
+    const resultDiv = document.getElementById('sandbox-eval-result');
+    
+    if (!code.trim()) {
+        resultDiv.innerHTML = '<span style="color: #ef4444;">Please write some code first!</span>';
+        return;
+    }
+    
+    btn.innerText = "Evaluating...";
+    btn.disabled = true;
+    resultDiv.innerHTML = '<span style="color: #60a5fa;">Running AI Code Analysis...</span>';
+    
+    try {
+        const response = await fetch(`${INTERVIEW_API_BASE_URL}/api/evaluate-sandbox-code`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                code: code,
+                task_title: title,
+                task_desc: desc
+            })
+        });
+        
+        if (!response.ok) throw new Error("Evaluation failed");
+        
+        const result = await response.json();
+        
+        if (result.passed) {
+            resultDiv.innerHTML = `<span style="color: #10b981; font-weight: bold;">PASSED ✓</span> <br/><span style="color: #94a3b8;">${result.feedback}</span>`;
+            btn.style.display = 'none';
+        } else {
+            resultDiv.innerHTML = `<span style="color: #ef4444; font-weight: bold;">FAILED ✗</span> <br/><span style="color: #94a3b8;">${result.feedback}</span>`;
+            btn.innerText = "Try Again";
+            btn.disabled = false;
+        }
+        
+    } catch (e) {
+        resultDiv.innerHTML = `<span style="color: #ef4444;">Error: ${e.message}</span>`;
+        btn.innerText = "Run Code";
+        btn.disabled = false;
+    }
+};

@@ -25,7 +25,13 @@ client = OpenAI(
 )
 
 class PromptRequest(BaseModel):
+    subject: str
     analysis_report: str
+
+class SandboxEvalRequest(BaseModel):
+    code: str
+    task_title: str
+    task_desc: str
     subject: str
 
 @app.post("/api/generate-interview")
@@ -106,7 +112,9 @@ async def evaluate_interview(
         "Output ONLY a valid JSON object with these exact keys: "
         "\"score\" (integer 0-100), "
         "\"deploy_sandbox\" (boolean, true if score < 70), "
-        "\"ai_voice_response\" (string, strict feedback to the user)."
+        "\"ai_voice_response\" (string, strict feedback to the user), "
+        "\"sandbox_task_title\" (string, a short title for a hands-on coding task based on what they failed, or null if passed), "
+        "\"sandbox_task_desc\" (string, a 1-sentence instruction for a coding task based on what they failed, or null if passed)."
     )
     
     try:
@@ -127,6 +135,39 @@ async def evaluate_interview(
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Evaluation failed: {str(e)}")
+
+@app.post("/api/evaluate-sandbox-code")
+async def evaluate_sandbox_code(request: SandboxEvalRequest):
+    """
+    Evaluates the code submitted by the user in the sandbox based on the assigned task.
+    """
+    if not api_key:
+        raise HTTPException(status_code=500, detail="GROQ_API_KEY not configured")
+        
+    system_prompt = (
+        "You are an expert technical evaluator. The user was assigned a coding task in a sandbox. "
+        "Analyze the provided code and determine if it correctly and securely fulfills the task requirements. "
+        "Be lenient on syntax unless it is fundamentally broken, focus on the core logic and security (e.g. parameterized queries). "
+        "Output ONLY a valid JSON object with these exact keys: "
+        "\"passed\" (boolean, true if the code fulfills the task reasonably well), "
+        "\"feedback\" (string, 1-2 sentences of feedback explaining why they passed or failed, or what could be improved)."
+    )
+    
+    try:
+        response = client.chat.completions.create(
+            model="groq/compound-mini",
+            response_format={ "type": "json_object" },
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": f"Task Title: {request.task_title}\nTask Description: {request.task_desc}\nUser's Code:\n{request.code}"}
+            ]
+        )
+        
+        result_json = json.loads(response.choices[0].message.content)
+        return result_json
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Code evaluation failed: {str(e)}")
 
 if __name__ == "__main__":
     import uvicorn
