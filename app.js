@@ -1,4 +1,4 @@
-import { db, auth, onAuthStateChanged, signOut, collection, addDoc, serverTimestamp, getDocs, doc, setDoc, getDoc, updateDoc, query, where, limit } from "./firebase-config.js";
+import { db, auth, onAuthStateChanged, signOut, collection, addDoc, serverTimestamp, getDocs, doc, setDoc, getDoc, updateDoc, arrayUnion, query, where, limit } from "./firebase-config.js";
 
 const AI_API_BASE_URL = "https://complications-radiation-russia-wilson.trycloudflare.com";
 
@@ -729,15 +729,28 @@ window.showStudentDetail = async function(docId) {
                                             Start Virtual Interview
                                         </button>
                                     </div>
-                                    ${(console.log('Rendering test:', d.subject, 'Has interview:', !!d.interview), d.interview) ? `
-                                    <div style="margin-top: 16px; padding: 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(0,0,0,0.2);">
-                                        <h4 style="color: #60a5fa; margin-top: 0; margin-bottom: 8px; font-size: 14px;">Virtual Interview Response</h4>
-                                        <div style="font-size: 13px; color: #94a3b8; margin-bottom: 8px;"><b>Prompt:</b> ${d.interview.prompt}</div>
-                                        <div style="font-size: 13px; color: #cbd5e1; margin-bottom: 8px;"><b>Student:</b> "${d.interview.transcription}"</div>
-                                        <div style="font-size: 13px; color: ${d.interview.score >= 70 ? '#10b981' : '#ef4444'}; font-weight: bold; margin-bottom: 4px;">Score: ${d.interview.score}/100</div>
-                                        <div style="font-size: 13px; font-style: italic; color: #f8fafc;"><b>AI Feedback:</b> "${d.interview.feedback}"</div>
-                                    </div>
-                                    ` : ''}
+                                    ${(() => {
+                                        let allInterviews = d.interviews || [];
+                                        if (d.interview) allInterviews = [d.interview, ...allInterviews];
+                                        
+                                        if (allInterviews.length === 0) return '';
+                                        
+                                        let html = '<div style="margin-top: 20px;"><h4 style="color: #60a5fa; margin-bottom: 10px; font-size: 14px;">Virtual Interview History</h4>';
+                                        allInterviews.forEach((inv, index) => {
+                                            html += `
+                                            <div style="margin-top: 12px; padding: 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(0,0,0,0.2);">
+                                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                                    <strong style="color: #cbd5e1; font-size: 13px;">Attempt #${allInterviews.length - index}</strong>
+                                                    <span style="font-size: 12px; color: ${inv.score >= 70 ? '#10b981' : '#ef4444'}; font-weight: bold;">Score: ${inv.score}/100</span>
+                                                </div>
+                                                <div style="font-size: 13px; color: #94a3b8; margin-bottom: 8px;"><b>Prompt:</b> ${inv.prompt}</div>
+                                                <div style="font-size: 13px; color: #cbd5e1; margin-bottom: 8px;"><b>Student:</b> "${inv.transcription}"</div>
+                                                <div style="font-size: 13px; font-style: italic; color: #f8fafc;"><b>AI Feedback:</b> "${inv.feedback}"</div>
+                                            </div>`;
+                                        });
+                                        html += '</div>';
+                                        return html;
+                                    })()}
                                 </div>
                             </details>
                         `;
@@ -1503,14 +1516,14 @@ async function submitInterviewAudio(audioBlob, subject, originalPrompt, statusEl
         if (docId && studentId) {
             try {
                 await updateDoc(doc(db, "students", studentId, "diagnostics", docId), {
-                    interview: {
+                    interviews: arrayUnion({
                         prompt: originalPrompt,
                         transcription: result.transcription,
                         score: result.score,
                         feedback: result.ai_voice_response,
                         passed: !result.deploy_sandbox,
                         timestamp: new Date().toISOString()
-                    }
+                    })
                 });
             } catch (err) {
                 console.error("Error saving interview results:", err);
