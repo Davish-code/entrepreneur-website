@@ -2,6 +2,7 @@
 import { db, auth, onAuthStateChanged, signOut, collection, addDoc, serverTimestamp, getDocs, doc, setDoc, getDoc, updateDoc, arrayUnion, query, where, limit } from "./firebase-config.js";
 
 const AI_API_BASE_URL = "https://complications-radiation-russia-wilson.trycloudflare.com";
+const INTERVIEW_API_BASE_URL = "https://perhaps-cork-lesser-consists.trycloudflare.com";
 
 let currentUser = null;
 
@@ -1371,7 +1372,7 @@ window.loadAnalyticsData = async function (container) {
 // ==========================================
 // VIRTUAL INTERVIEW LOGIC
 // ==========================================
-const INTERVIEW_API_BASE_URL = "https://onion-drugs-robust-nancy.trycloudflare.com";
+
 
 window.startVirtualInterview = async function (button) {
     const subject = button.getAttribute('data-subject');
