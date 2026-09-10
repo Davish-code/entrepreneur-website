@@ -739,6 +739,9 @@ window.showStudentDetail = async function (docId) {
                                 if (d.interview) allInterviews = [d.interview, ...allInterviews];
 
                                 if (allInterviews.length === 0) return '';
+                                
+                                // Reverse to show latest attempt first
+                                allInterviews = allInterviews.slice().reverse();
 
                                 let html = '<div style="margin-top: 20px;"><h4 style="color: #60a5fa; margin-bottom: 10px; font-size: 14px;">Virtual Interview History</h4>';
                                 allInterviews.forEach((inv, index) => {
@@ -1812,6 +1815,9 @@ window.downloadDiagnosticReport = async function(btn) {
         let allInterviews = data.interviews || [];
         if (data.interview) allInterviews = [data.interview, ...allInterviews];
         
+        // Reverse to show latest attempt first
+        allInterviews = allInterviews.slice().reverse();
+        
         // Get the student's name from the eduflow document
         let studentName = "Student";
         try {
@@ -1879,15 +1885,30 @@ window.downloadDiagnosticReport = async function(btn) {
         ${allInterviews.length > 0 ? `
         <div class="card">
             <h3>Interview Transcripts</h3>
-            ${allInterviews.map((inv, idx) => `
+            ${allInterviews.map((inv, idx) => {
+                const rubricsHTML = inv.rubric ? Object.entries(inv.rubric).map(([k, v]) => `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:12px;">
+                        <span style="color:#94a3b8;">${k}</span>
+                        <span style="color:${v >= 70 ? '#10b981' : '#ef4444'};">${v}%</span>
+                    </div>
+                `).join('') : '';
+                return `
                 <div class="interview-card">
                     <div class="score-badge ${inv.score >= 70 ? 'score-pass' : 'score-fail'}">Score: ${inv.score}/100</div>
                     <h4 style="margin-top: 0; color: #60a5fa; margin-bottom: 10px;">Attempt #${allInterviews.length - idx}</h4>
-                    <div style="margin-bottom: 10px;"><strong>AI Prompt:</strong> <span style="color: #94a3b8;">${inv.prompt}</span></div>
-                    <div style="margin-bottom: 10px;"><strong>Student Transcription:</strong> <span style="color: #cbd5e1;">"${inv.transcription}"</span></div>
-                    <div><strong>AI Feedback:</strong> <i style="color: #e2e8f0;">"${inv.feedback}"</i></div>
+                    <div style="margin-bottom: 10px;"><strong>Examiner Prompt:</strong> <span style="color: #94a3b8;">${inv.prompt}</span></div>
+                    <div style="margin-bottom: 10px;"><strong>Student Response:</strong> <span style="color: #cbd5e1;">"${inv.transcription}"</span></div>
+                    
+                    <div style="background: rgba(15, 23, 42, 0.5); padding: 12px; border-radius: 6px; border-left: 3px solid ${inv.score >= 70 ? '#10b981' : '#ef4444'};">
+                        ${inv.conceptual_gap ? '<div style="color: #f59e0b; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px;">⚠️ Conceptual Gap</div>' : ''}
+                        <div style="color: #f8fafc; font-size: 13px; font-weight: 600; margin-bottom: ${rubricsHTML ? '10px' : '0'};">${inv.feedback_title || 'AI Feedback'}</div>
+                        
+                        ${rubricsHTML ? `<div style="margin-bottom:10px;">${rubricsHTML}</div>` : ''}
+                        
+                        ${inv.what_to_fix ? `<div style="color: #cbd5e1; font-size: 12px; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px;"><b>What to fix:</b> ${inv.what_to_fix}</div>` : (inv.feedback ? `<div style="color: #cbd5e1; font-size: 12px;">${inv.feedback}</div>` : '')}
+                    </div>
                 </div>
-            `).join('')}
+            `;}).join('')}
         </div>
         ` : ''}
     </div>
