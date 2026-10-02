@@ -11,18 +11,18 @@
             max-width: 800px;
             margin: 120px auto 60px;
             padding: 40px;
-            background: var(--bg-card);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            box-shadow: var(--shadow-l3);
         }
         
         .terms-title {
             font-size: 2.5rem;
             margin-bottom: 30px;
-            background: linear-gradient(135deg, #fff, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-title);
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .back-link {
@@ -30,39 +30,39 @@
             margin-bottom: 20px;
             color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.3s;
         }
 
         .back-link:hover {
-            color: var(--primary-light);
+            color: var(--primary-hover);
         }
 
         .terms-content {
-            color: var(--text-secondary, #b3b3b3);
+            color: var(--text-body);
             line-height: 1.6;
         }
 
         .terms-section {
             margin-bottom: 2rem;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--surface-low);
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
             transition: transform 0.3s ease, background 0.3s ease;
         }
 
         .terms-section:hover {
             transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--surface-well);
         }
 
         .terms-section h2 {
-            color: var(--text-primary, #ffffff);
+            color: var(--text-title);
             font-size: 1.4rem;
             margin-bottom: 1rem;
             margin-top: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border);
             padding-bottom: 0.5rem;
         }
 

@@ -2,491 +2,1579 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SyncForge | Non-Invasive Industry 4.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="landing.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SyncForge | Precision Telemetry & AI</title>
+  <link rel="stylesheet" href="landing.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { corePlugins: { preflight: false, container: false }, darkMode: "class", theme: { extend: { "colors": { "on-tertiary-fixed-variant": "#004b73", "background": "#faf8ff", "secondary-fixed-dim": "#6bd8cb", "primary-fixed": "#dce1ff", "error": "#ba1a1a", "on-surface": "#131b2e", "primary-container": "#1d4ed8", "surface-tint": "#2151da", "primary-fixed-dim": "#b7c4ff", "on-tertiary-container": "#b2d9ff", "error-container": "#ffdad6", "surface-container-low": "#f2f3ff", "on-error-container": "#93000a", "surface-dim": "#d2d9f4", "on-tertiary-fixed": "#001d31", "surface-container-high": "#e2e7ff", "on-background": "#131b2e", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "on-primary-fixed": "#001551", "surface-variant": "#dae2fd", "tertiary-fixed": "#cce5ff", "inverse-primary": "#b7c4ff", "surface": "#faf8ff", "secondary": "#006a61", "inverse-surface": "#283044", "primary": "#0037b0", "surface-container-highest": "#dae2fd", "surface-container": "#eaedff", "on-secondary": "#ffffff", "inverse-on-surface": "#eef0ff", "on-secondary-fixed-variant": "#005049", "outline": "#747686", "on-surface-variant": "#434655", "on-primary-container": "#cad3ff", "on-primary-fixed-variant": "#0039b5", "tertiary-container": "#006194", "outline-variant": "#c4c5d7", "on-error": "#ffffff", "secondary-container": "#86f2e4", "surface-bright": "#faf8ff", "tertiary-fixed-dim": "#93ccff", "tertiary": "#004870", "secondary-fixed": "#89f5e7", "on-secondary-fixed": "#00201d", "surface-container-lowest": "#ffffff", "on-secondary-container": "#006f66" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter-lg": "1.5rem", "margin-lg": "2rem", "margin": "1rem", "space-xs": "0.25rem", "space-lg": "1rem", "space-md": "0.75rem", "margin-md": "1.5rem", "space-xl": "1.5rem", "gutter": "1rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-lg": ["Inter"], "telemetry-metric": ["JetBrains Mono"], "headline-xl-mobile": ["Inter"], "headline-xl": ["Inter"], "body-lg": ["Inter"], "body-sm": ["Inter"], "label-sm": ["Inter"], "label-lg": ["Inter"], "telemetry-code": ["JetBrains Mono"], "label-md": ["Inter"], "headline-sm": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"] }, "fontSize": { "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "telemetry-metric": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }], "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }], "telemetry-code": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.015em", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }] } } } };</script>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-header">
-            <div class="logo">Sync<span>Forge</span></div>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </div>
-        </div>
-        <div class="nav-links" id="nav-links">
-            <a href="#solutions">Solutions</a>
-            <a href="#tech">Technology</a>
-            <a href="#pricing">Pricing</a>
-            <button class="login-btn" onclick="openModal('login')">Client Login</button>
-            <button class="cta-btn" onclick="openModal('signup')">Get Started</button>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-content">
-            <div class="badge">A Unified Intelligence Architecture</div>
-            <h1>One Award-Winning <span>AI Engine.</span><br>Two Industry-Defining Verticals.</h1>
-            <p>From predicting student learning gaps with adaptive academic portals to preventing catastrophic machine
-                failures using military-grade edge telemetry—our core intelligence engine scales to your most critical
-                problems.</p>
-            <div class="hero-actions">
-                <a href="#solutions" class="cta-btn large">Explore Industrial Solutions</a>
-                <a href="#eduflow" class="cta-btn large usp-btn-solid">Explore Academic Portal (EduFlow)</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Solutions / Modules Section -->
-    <section id="solutions" class="solutions-section">
-        <div class="section-header">
-            <span class="sub-heading">Hardware-Enabled SaaS</span>
-            <h2>Modular Edge Architecture</h2>
-            <p>Target specific operational bottlenecks. Deploy our edge-compute modules without rewiring a single PLC or
-                halting your assembly line.</p>
-        </div>
-
-        <!-- Academic USP Flagship Block -->
-        <div id="eduflow" class="usp-academic-card">
-            <div class="usp-badge">Ideathon Winner: Best AI Architecture</div>
-            <div class="usp-layout">
-                <div class="usp-content">
-                    <div class="icon-wrapper academic-icon">🎓</div>
-                    <h3>Flagship Academic Division: EduFlow AI</h3>
-                    <p>Our award-winning platform engineered for academic institutions. EduFlow acts as a 24/7 personal
-                        tutor, identifying knowledge gaps and tailoring content in real-time. We solve the "One Size
-                        Fits All" crisis and eliminate teacher burnout.</p>
-
-                    <ul class="feature-list usp-features">
-                        <li>✓ <strong>Adaptive Curriculum:</strong> Evolves difficulty based on engagement.</li>
-                        <li>✓ <strong>Instant Doubt Solving:</strong> NLP-powered chatbot for real-time answers.</li>
-                        <li>✓ <strong>Teacher Analytics:</strong> Dashboards to highlight at-risk students.</li>
-                    </ul>
-                </div>
-
-                <div class="usp-metrics-panel">
-                    <h4>Projected Academic ROI</h4>
-                    <div class="usp-metrics-grid">
-                        <div class="usp-metric">
-                            <span class="usp-number">40%</span>
-                            <span class="usp-label">Grade Improvement</span>
-                        </div>
-                        <div class="usp-metric">
-                            <span class="usp-number">2x</span>
-                            <span class="usp-label">Retention Rate</span>
-                        </div>
-                        <div class="usp-metric">
-                            <span class="usp-number">15hr</span>
-                            <span class="usp-label">Weekly Time Saved</span>
-                        </div>
-                    </div>
-                    <button class="deploy-btn usp-btn" onclick="openModal('signup', 'eduflow')">Deploy Academic
-                        Portal</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- The existing <div class="solutions-grid"> stays right below this -->
-
-        <div class="solutions-grid">
-            <!-- Module 1: OEE -->
-            <div class="solution-card">
-                <div class="icon-wrapper">📊</div>
-                <h3>OEE & Telemetry Analytics</h3>
-                <p>Instantly track machine uptime, cycle times, and operational bottlenecks using non-invasive current
-                    transducers and light-tower sensors.</p>
-                <ul class="feature-list">
-                    <li>✓ Real-time dashboards</li>
-                    <li>✓ Automated shift reporting</li>
-                    <li>✓ MQTT low-latency streaming</li>
-                </ul>
-                <button class="deploy-btn" onclick="openModal('signup')">Deploy Module</button>
-            </div>
-
-            <!-- Module 2: Quality Vision -->
-            <div class="solution-card">
-                <div class="icon-wrapper">📷</div>
-                <h3>AI Vision Quality Control</h3>
-                <p>Automate visual inspections on high-speed lines. Our edge-inference cameras detect micro-defects at
-                    60 frames per second.</p>
-                <ul class="feature-list">
-                    <li>✓ Sub-millimeter accuracy</li>
-                    <li>✓ Offline edge-processing</li>
-                    <li>✓ Automated reject triggering</li>
-                </ul>
-                <button class="deploy-btn" onclick="openModal('signup')">Deploy Module</button>
-            </div>
-
-            <!-- Module 3: Predictive Maintenance -->
-            <div class="solution-card">
-                <div class="icon-wrapper">⚙️</div>
-                <h3>Predictive Maintenance</h3>
-                <p>Strap our multi-axis vibration and thermal sensor pucks to your critical motors to predict bearing
-                    failures weeks before they happen.</p>
-                <ul class="feature-list">
-                    <li>✓ Thermal & vibration tracking</li>
-                    <li>✓ Automated SMS/Email alerts</li>
-                    <li>✓ Zero machine modification</li>
-                </ul>
-                <button class="deploy-btn" onclick="openModal('signup')">Deploy Module</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Deployment Pipeline Section -->
-    <section id="tech" class="pipeline-section">
-        <div class="section-header">
-            <span class="sub-heading">Deployment Protocol</span>
-            <h2>Zero-Downtime Architecture</h2>
-            <p>We bridge the gap between legacy hardware and modern cloud analytics. Deployed in days, not months.</p>
-        </div>
-
-        <div class="pipeline-container">
-            <div class="pipeline-step">
-                <div class="step-number">01</div>
-                <div class="step-content">
-                    <h4>Non-Invasive Edge Nodes</h4>
-                    <p>We deploy industrial-grade IoT pucks and vision cameras directly onto existing machine chassis.
-                        No PLC reprogramming or assembly line shutdowns required.</p>
-                </div>
-            </div>
-
-            <div class="pipeline-connector"></div>
-
-            <div class="pipeline-step">
-                <div class="step-number">02</div>
-                <div class="step-content">
-                    <h4>Local AI Inference</h4>
-                    <p>Raw data is processed locally on edge microcontrollers. Computer vision defect detection and
-                        digital logic filtering happen instantly on the factory floor to ensure zero latency.</p>
-                </div>
-            </div>
-
-            <div class="pipeline-connector"></div>
-
-            <div class="pipeline-step">
-                <div class="step-number">03</div>
-                <div class="step-content">
-                    <h4>Cloud Telemetry & Alerts</h4>
-                    <p>Clean, structured time-series data is streamed via secure MQTT to your centralized VentureOS
-                        dashboard, triggering automated SMS and UI alerts before failures happen.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- R&D Credibility Section -->
-    <section class="rnd-section">
-        <div class="rnd-container">
-            <div class="rnd-content">
-                <span class="sub-heading">Unified Intelligence Engine</span>
-                <h2>Powered by Award-Winning Predictive AI</h2>
-                <p>SyncForge isn't built on off-the-shelf APIs. The same proprietary NLP and dynamic baselining
-                    architecture that seamlessly predicts a student's learning gap in real-time is the exact same
-                    underlying engine predicting catastrophic machine failures on the factory floor.</p>
-
-                <div class="rnd-stats">
-                    <div class="rnd-stat-item">
-                        <h4>Proprietary NLP</h4>
-                        <p>Translates complex behavioral inputs—whether from students or industrial sensors—into
-                            actionable insights.</p>
-                    </div>
-                    <div class="rnd-stat-item">
-                        <h4>Dynamic Baselines</h4>
-                        <p>Machine learning models that adapt autonomously to your specific environment, ensuring
-                            precision across verticals.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Interactive Pitch Deck Slider (Replaces the Badge) -->
-            <div class="pitch-slider-wrapper">
-                <div class="slider-header">
-                    <span>Ideathon Winning Pitch Deck</span>
-                </div>
-
-                <div class="slider-container">
-                    <!-- Slide award: Title -->
-                    <div class="slide active">
-                        <img src="assets/award.jpg" alt="AI In Education - Opportunity or Risk[cite: 1]">
-                    </div>
-                    <!-- Slide 1: Title -->
-                    <div class="slide active">
-                        <img src="assets/Slide1.JPG" alt="AI In Education - Opportunity or Risk[cite: 1]">
-                    </div>
-                    <!-- Slide 2: Problem -->
-                    <div class="slide">
-                        <img src="assets/Slide2.JPG" alt="The One Size Fits All Crisis[cite: 1]">
-                    </div>
-                    <!-- Slide 3: Solution -->
-                    <div class="slide">
-                        <img src="assets/Slide3.JPG" alt="Meet EduFlow[cite: 1]">
-                    </div>
-                    <!-- slide 4 -->
-                    <div class="slide">
-                        <img src="assets/Slide4.JPG" alt="Meet EduFlow[cite: 1]">
-                    </div>
-                    <!-- slide 4 -->
-                    <div class="slide">
-                        <img src="assets/Slide5.JPG" alt="Meet EduFlow[cite: 1]">
-                    </div>
-
-                    <!-- Navigation Arrows -->
-                    <button class="slider-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
-                    <button class="slider-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
-                </div>
-
-                <!-- Slide Indicators -->
-                <div class="slider-dots">
-                    <span class="dot active" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
-                    <span class="dot" onclick="currentSlide(4)"></span>
-                    <span class="dot" onclick="currentSlide(5)"></span>
-                    <span class="dot" onclick="currentSlide(6)"></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enterprise ROI Banner -->
-    <section class="roi-section">
-        <div class="roi-content">
-            <h2>Stop guessing. Start measuring.</h2>
-            <p>Our pilot deployments average a massive reduction in unplanned downtime within the first 30 days of
-                integration.</p>
-
-            <div class="metrics-grid">
-                <div class="metric">
-                    <h3>-40%</h3>
-                    <span>Unplanned Downtime</span>
-                </div>
-                <div class="metric">
-                    <h3>+15%</h3>
-                    <span>OEE Improvement</span>
-                </div>
-                <div class="metric">
-                    <h3>&lt; 14 Days</h3>
-                    <span>Time to Value</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modules in Action Section -->
-    <section id="modules-action" class="action-section">
-        <div class="section-header">
-            <span class="sub-heading">Modules in Action</span>
-        </div>
-
-        <div class="action-grid">
-            <!-- Card 1: Telemetry -->
-            <div class="action-card">
-                <div class="image-wrapper">
-                    <!-- REPLACE the src below with your AI generated image file -->
-                    <img src="assets/telemetry-demo.png" alt="OEE & Telemetry Streaming" class="module-image">
-                </div>
-                <div class="action-content">
-                    <h4>OEE & Telemetry Streaming</h4>
-                    <p>Edge-based sensor retrofit for real-time asset health. Zero network footprint.</p>
-                    <button class="action-btn" onclick="openModal('signup')">Analyze Pipeline</button>
-                </div>
-            </div>
-
-            <!-- Card 2: Predictive AI -->
-            <div class="action-card">
-                <div class="image-wrapper">
-                    <!-- REPLACE the src below with your AI generated image file -->
-                    <img src="assets/predictive-demo.png" alt="Predictive Failure Modeling" class="module-image">
-                </div>
-                <div class="action-content">
-                    <h4>Predictive Failure Modeling</h4>
-                    <p>AI signature analysis for early warning and part replacement scheduling.</p>
-                    <button class="action-btn" onclick="openModal('signup')">Explore Failure Models</button>
-                </div>
-            </div>
-
-            <!-- Card 3: Vision Inspection -->
-            <div class="action-card">
-                <div class="image-wrapper">
-                    <!-- REPLACE the src below with your AI generated image file -->
-                    <img src="assets/vision-demo.png" alt="AI Vision Quality Inspection" class="module-image">
-                </div>
-                <div class="action-content">
-                    <h4>AI Vision Quality Inspection</h4>
-                    <p>Edge AI inspection at 60 FPS with sub-millimeter accuracy. Automated reject system integration.
-                    </p>
-                    <button class="action-btn" onclick="openModal('signup')">Run Inspection Demo</button>
-                </div>
-            </div>
-
-            <!-- Card 4: The Academic USP -->
-            <div class="action-card usp-highlight-card">
-                <div class="image-wrapper">
-                    <!-- Put a screenshot of your EduFlow dashboard or ideathon poster here -->
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
-                        alt="EduFlow Academic AI" class="module-image">
-                </div>
-                <div class="action-content">
-                    <h4 class="usp-text">EduFlow: Academic AI (Ideathon Winner)</h4>
-                    <p>Our flagship educational platform that acts as a 24/7 personal tutor, identifying knowledge gaps
-                        and tailoring content to specific learning styles.</p>
-                    <button class="action-btn usp-btn-solid" onclick="openModal('signup')">Deploy Academic
-                        Portal</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing-section">
-        <div class="section-header text-center">
-            <span class="sub-heading">Transparent Plans</span>
-            <h2>Choose Your Deployment Model</h2>
-            <p>Scale from a single edge node to global enterprise deployment without friction.</p>
-        </div>
-
-        <div class="pricing-tabs">
-            <button class="pricing-tab active" data-model="eduflow">EduFlow AI</button>
-            <button class="pricing-tab" data-model="oee">OEE & Telemetry</button>
-            <button class="pricing-tab" data-model="vision">Vision AI</button>
-            <button class="pricing-tab" data-model="predictive">Predictive Maintenance</button>
-        </div>
-
-        <div class="pricing-grid" id="pricing-grid">
-            <!-- Pricing Cards will be injected by landing.js based on selected tab -->
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">Sync<span>Forge</span></div>
-            <p>Empowering Industry 4.0 and Educational Excellence through Unified Intelligence Architecture.</p>
-            <div class="footer-links">
-                <a href="#solutions">Solutions</a>
-                <a href="#tech">Technology</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 SyncForge. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Authentication Modal (Hidden by default) -->
-    <div id="auth-modal" class="modal-overlay">
-        <div class="modal-card">
-            <button class="close-btn" onclick="closeModal()">×</button>
-
-            <div id="signup-form" class="auth-view active">
-                <h2 id="signup-title">Configure Enterprise Pilot</h2>
-                <p id="signup-desc">Provision your secure environment.</p>
-                <form onsubmit="handleAuth(event)">
-                    <div class="input-group">
-                        <label>Company Name</label>
-                        <input type="text" id="company" required placeholder="e.g. Apex Manufacturing">
-                    </div>
-                    <div class="input-group">
-                        <label>Work Email</label>
-                        <input type="email" id="signup-email" required placeholder="manager@company.com">
-                    </div>
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" id="signup-password" required placeholder="••••••••">
-                    </div>
-                    <div class="input-group">
-                        <label>Select Initial Module</label>
-                        <select id="module-select" required>
-                            <option value="oee" disabled>-- Select Industrial Module --</option>
-                            <option value="oee">OEE & Telemetry Analytics</option>
-                            <option value="vision">AI Vision Quality Control</option>
-                            <option value="predictive">Predictive Maintenance</option>
-                            <option value="eduflow" disabled>-- Select Academic Module --</option>
-                            <option value="eduflow">EduFlow: Academic AI Portal</option>
-                        </select>
-                        <div class="custom-checkbox-group">
-                            <label class="custom-checkbox">
-                                <input type="checkbox" id="terms-checkbox">
-                                <span class="checkmark"></span>
-                                <span class="checkbox-text">I agree to the <a href="terms.html" class="terms-link" target="_blank">Terms and
-                                        Conditions</a></span>
-                            </label>
-                        </div>
-                        <div class="sso-divider"><span>OR</span></div>
-                        <button type="button" id="google-sso-btn" class="sso-btn" disabled>
-                            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                                    fill="#4285F4" />
-                                <path
-                                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                                    fill="#34A853" />
-                                <path
-                                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                                    fill="#FBBC05" />
-                                <path
-                                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                                    fill="#EA4335" />
-                            </svg>
-                            Continue with Google Workspace
-                        </button>
-                    </div>
-                    <button type="submit" class="submit-btn" disabled>Provision Dashboard</button>
-                </form>
-                <div class="switch-auth">Already a client? <span onclick="switchView('login')">Log in</span></div>
-            </div>
-
-            <div id="login-form" class="auth-view">
-                <h2>Client Portal Access</h2>
-                <p>Enter your credentials to access live telemetry.</p>
-                <form onsubmit="handleAuth(event)">
-                    <div class="input-group">
-                        <label>Work Email</label>
-                        <input type="email" required placeholder="admin@company.com">
-                    </div>
-                    <div class="input-group">
-                        <label>Access Key</label>
-                        <input type="password" required placeholder="••••••••">
-                        
-                        <div class="sso-divider"><span>OR</span></div>
-                        <button type="button" id="google-login-sso-btn" class="sso-btn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                                    fill="#4285F4" />
-                                <path
-                                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                                    fill="#34A853" />
-                                <path
-                                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                                    fill="#FBBC05" />
-                                <path
-                                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                                    fill="#EA4335" />
-                            </svg>
-                            Continue with Google Workspace
-                        </button>
-                    </div>
-                    <button type="submit" class="submit-btn">Access Fleet</button>
-                </form>
-                <div class="switch-auth">Need to deploy? <span onclick="switchView('signup')">Start Pilot</span></div>
-            </div>
-        </div>
+  <!-- Sticky top nav -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="logo-container" style="text-decoration: none;">
+        <img src="assets/logo.png" alt="SyncForge Logo" style="height: 55px; width: auto;">
+        <div class="logo-text">SyncForge</div>
+      </a>
+      <div class="badge-enterprise">ENTERPRISE 4.0</div>
     </div>
 
-    <script type="module" src="landing.js"></script>
+    <!-- Mobile hamburger toggle -->
+    <button class="hamburger" id="hamburger-btn" onclick="document.getElementById('nav-links').classList.toggle('open'); this.classList.toggle('active')" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div id="nav-links" class="nav-links">
+      <div class="nav-dropdown-wrapper">
+        <a href="#solutions" class="nav-link">Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6" />
+          </svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="#" class="disabled-link">Industrial IoT Telemetry <span class="coming-soon">Coming Soon</span></a>
+          <a href="#" class="disabled-link">AI Vision Quality Control <span class="coming-soon">Coming Soon</span></a>
+          <a href="#" class="disabled-link">Predictive Maintenance <span class="coming-soon">Coming Soon</span></a>
+          <a href="#eduflow">EduFlow Operator Portal</a>
+        </div>
+      </div>
+      <a href="#architecture" class="nav-link">Architecture</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="terms.html" class="nav-link">T&C</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="#" class="client-portal" onclick="openModal('login'); return false;">Client Portal</a>
+      <button class="btn btn-primary" onclick="openModal('signup')">Deploy Pilot</button>
+      <button class="btn-icon" onclick="openModal('login')">
+        <svg width="20" height="20" viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="container hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="dot"></div>
+        UNIFIED INTELLIGENCE ARCHITECTURE <span style="color: #cbd5e1; margin: 0 4px;">/</span> <span
+          class="winner">Ideathon Winner: Best AI Architecture</span>
+      </div>
+      <h1 class="hero-title">One Award-Winning AI Engine.<br><span class="highlight">Two Industry-Defining
+          Verticals.</span></h1>
+      <p class="hero-desc">From predicting student learning gaps with adaptive academic portals to preventing
+        catastrophic machine failures using military-grade edge telemetry—our core intelligence engine scales to your
+        most critical problems.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="openModal('signup', 'oee')">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path
+              d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+          </svg>
+          Explore Industrial Solutions
+        </button>
+        <button class="btn btn-outline-gray" onclick="openModal('signup', 'eduflow')">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg>
+          Explore Academic Portal (EduFlow)
+        </button>
+      </div>
+      <div class="hero-checks">
+        <div class="hero-check">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          Deployed in days
+        </div>
+        <div class="hero-check-divider"></div>
+        <div class="hero-check">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          Zero PLC downtime
+        </div>
+        <div class="hero-check-divider"></div>
+        <div class="hero-check">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          Sub-millimeter accuracy
+        </div>
+      </div>
+    </div>
+
+    <div class="telemetry-panel">
+      <div class="telemetry-header">
+        <div class="telemetry-title">
+          <div class="dot"></div>
+          SYS_BUS // RUNTIME
+        </div>
+        <div class="telemetry-tags">
+          <div class="telemetry-tag">Node #04</div>
+          <div class="telemetry-tag blue">EduFlow Gap</div>
+        </div>
+      </div>
+
+      <div class="telemetry-grid">
+        <div class="tel-box">
+          <div class="tel-box-header"><span>VISION FPS</span></div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div class="tel-box-value t-mono">59.8</div>
+            <div class="tel-status">LIVE</div>
+          </div>
+        </div>
+        <div class="tel-box">
+          <div class="tel-box-header"><span>VIBRATION</span></div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div class="tel-box-value t-mono">1.42 <span class="tel-box-unit">mm/s</span></div>
+            <div class="tel-status">NOMINAL</div>
+          </div>
+        </div>
+        <div class="tel-box">
+          <div class="tel-box-header"><span>THERMAL CORE</span></div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div class="tel-box-value t-mono">41.2<span class="tel-box-unit" style="font-size: 20px;">°C</span></div>
+            <div class="tel-box-unit" style="font-size: 11px; align-self: flex-end;">38-55°</div>
+          </div>
+        </div>
+        <div class="tel-box">
+          <div class="tel-box-header"><span>MQTT LATENCY</span></div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div class="tel-box-value t-mono" style="color: var(--primary);">14 <span class="tel-box-unit">ms</span>
+            </div>
+            <div class="tel-status">SYNCED</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="telemetry-chart-box">
+        <div class="chart-header">
+          <span>Multi-Axis Vibration Telemetry (Puck-088)</span>
+          <span class="delta">DELTA +8.03%</span>
+        </div>
+        <div class="chart-body">
+          <div class="chart-dashed"></div>
+          <svg class="chart-svg" viewBox="0 0 400 36" preserveAspectRatio="none">
+            <path
+              d="M0 20 L20 18 L40 19 L60 22 L80 20 L100 24 L120 21 L140 23 L160 19 L180 21 L200 17 L220 19 L240 24 L260 16 L280 14 L300 18 L320 15 L340 17 L360 16 L380 18 L400 15" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="alert-box">
+        <div class="alert-content">
+          <svg class="alert-icon" width="20" height="20" viewBox="0 0 24 24">
+            <path
+              d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01" />
+          </svg>
+          <div class="alert-text">
+            <h4>Bearing Wear Predicted in 18 Days</h4>
+            <p>Harmonic signature delta triggered safety threshold</p>
+          </div>
+        </div>
+        <div class="alert-badge">ALERT</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dual Domain Section -->
+  <div class="container no-top">
+    <div class="section-header">
+      <span class="section-label">DUAL DOMAIN DEPLOYMENT</span>
+      <h2 class="section-title">Enterprise Intelligence in Two Arenas</h2>
+      <p class="section-desc">Our cross-disciplinary architecture eliminates operational guesswork whether in the
+        lecture hall or across automated robotic assembly lines.</p>
+    </div>
+
+    <div class="academic-card">
+      <div class="academic-left">
+        <div class="academic-badge">IDEATHON WINNER: BEST AI ARCHITECTURE</div>
+        <h3 class="academic-title">Flagship Academic Division: EduFlow AI</h3>
+        <p class="academic-desc">Our award-winning platform engineered for academic institutions. EduFlow acts as a 24/7
+          personal tutor, identifying knowledge gaps and tailoring content in real-time. We solve the "One Size Fits
+          All" crisis and eliminate teacher burnout.</p>
+
+        <div class="academic-list">
+          <div class="academic-list-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <span><strong>Adaptive Curriculum:</strong> Evolves difficulty based on engagement.</span>
+          </div>
+          <div class="academic-list-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <span><strong>Instant Doubt Solving:</strong> NLP-powered chatbot for real-time answers.</span>
+          </div>
+          <div class="academic-list-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <span><strong>Teacher Analytics:</strong> Dashboards to highlight at-risk students.</span>
+          </div>
+        </div>
+
+        <div class="roi-container">
+          <span class="roi-label">PROJECTED ACADEMIC ROI</span>
+          <div class="roi-grid">
+            <div class="roi-box">
+              <span class="roi-val">40%</span>
+              <span class="roi-desc">Grade Improvement</span>
+            </div>
+            <div class="roi-box">
+              <span class="roi-val">2x</span>
+              <span class="roi-desc">Retention Rate</span>
+            </div>
+            <div class="roi-box">
+              <span class="roi-val">15hr</span>
+              <span class="roi-desc">Weekly Time Saved</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" style="padding: 12px 24px; border-radius: 4px;" onclick="openModal('signup', 'eduflow')">
+          Deploy Academic Portal &rarr;
+        </button>
+      </div>
+
+      <div class="academic-right">
+        <div class="matrix-header">
+          <div class="matrix-title">COGNITIVE MATRIX // EDUFLOW-CORE</div>
+          <svg class="matrix-icon" width="16" height="16" viewBox="0 0 24 24">
+            <path d="M18 20V10M12 20V4M6 20v-6" />
+          </svg>
+        </div>
+
+        <div class="cohort-header">
+          <div class="cohort-title">Student Cohort B-12</div>
+          <div class="cohort-badge">HIGH MOMENTUM</div>
+        </div>
+
+        <div class="progress-group">
+          <div class="progress-label-row">
+            <span>Linear Algebra (Vector Spaces)</span>
+            <span class="progress-val">94% Mastered</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill blue"></div>
+          </div>
+        </div>
+
+        <div class="progress-group">
+          <div class="progress-label-row">
+            <span>Calculus II (Taylor Expansions)</span>
+            <span class="progress-val">78% Mastered</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill green"></div>
+          </div>
+        </div>
+
+        <div class="progress-group">
+          <div class="progress-label-row">
+            <span>Discrete Mathematics</span>
+            <span class="progress-val">62% Mastered</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill gray"></div>
+          </div>
+        </div>
+
+        <div class="matrix-footer">
+          <svg width="14" height="14" viewBox="0 0 24 24">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+          Proprietary NLP identified 3 core bottleneck misconceptions
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-Up Cards -->
+  <div class="bg-canvas">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">HARDWARE-ENABLED SAAS</span>
+        <h2 class="section-title">Modular Edge Architecture</h2>
+        <p class="section-desc">Target specific operational bottlenecks. Deploy our edge-compute modules without
+          rewiring a single PLC or halting your assembly line.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="feature-card">
+          <div class="fc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path d="M3 3v18h18" />
+              <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
+            </svg>
+          </div>
+          <h3 class="fc-title">OEE & Telemetry Analytics</h3>
+          <p class="fc-desc">Instantly track machine uptime, cycle times, and operational bottlenecks using non-invasive
+            current transducers and light-tower sensors.</p>
+          <div class="fc-list">
+            <div class="fc-list-item"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Real-time dashboards</div>
+            <div class="fc-list-item"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Automated shift reporting</div>
+            <div class="fc-list-item"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> MQTT low-latency streaming</div>
+          </div>
+          <button class="btn-fc" onclick="openModal('signup', 'oee')">Deploy Module</button>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+          </div>
+          <h3 class="fc-title">AI Vision Quality Control</h3>
+          <p class="fc-desc">Automate visual inspections on high-speed lines. Our edge-inference cameras detect
+            micro-defects at 60 frames per second.</p>
+          <div class="fc-list">
+            <div class="fc-list-item"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Sub-millimeter accuracy</div>
+            <div class="fc-list-item"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Offline edge-processing</div>
+            <div class="fc-list-item"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Automated reject triggering</div>
+          </div>
+          <button class="btn-fc" onclick="openModal('signup', 'vision')">Deploy Module</button>
+        </div>
+
+        <div class="feature-card">
+          <div class="fc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+              <rect x="9" y="9" width="6" height="6" />
+              <line x1="9" y1="1" x2="9" y2="4" />
+              <line x1="15" y1="1" x2="15" y2="4" />
+              <line x1="9" y1="20" x2="9" y2="23" />
+              <line x1="15" y1="20" x2="15" y2="23" />
+              <line x1="20" y1="9" x2="23" y2="9" />
+              <line x1="20" y1="14" x2="23" y2="14" />
+              <line x1="1" y1="9" x2="4" y2="9" />
+              <line x1="1" y1="14" x2="4" y2="14" />
+            </svg>
+          </div>
+          <h3 class="fc-title">Predictive Maintenance</h3>
+          <p class="fc-desc">Strap our multi-axis vibration and thermal sensor pucks to your critical motors to predict
+            bearing failures weeks before they happen.</p>
+          <div class="fc-list">
+            <div class="fc-list-item"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Thermal & vibration tracking</div>
+            <div class="fc-list-item"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Automated SMS/Email alerts</div>
+            <div class="fc-list-item"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Zero machine modification</div>
+          </div>
+          <button class="btn-fc" onclick="openModal('signup', 'predictive')">Deploy Module</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pipeline Protocol -->
+  <div id="architecture" class="bg-light" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">DEPLOYMENT PROTOCOL</span>
+        <h2 class="section-title">Zero-Downtime Architecture</h2>
+        <p class="section-desc">We bridge the gap between legacy hardware and modern cloud analytics. Deployed in days,
+          not months.</p>
+      </div>
+
+      <div class="pipeline-grid">
+        <div class="pipeline-step">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Non-Invasive Edge Nodes</h3>
+          <p class="step-desc">We deploy industrial-grade IoT pucks and vision cameras directly onto existing machine
+            chassis. No PLC reprogramming or assembly line shutdowns required.</p>
+          <div class="step-footer">PHYSICAL ATTACHMENT: PASSIVE</div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Local AI Inference</h3>
+          <p class="step-desc">Raw data is processed locally on edge microcontrollers. Computer vision defect detection
+            and digital logic filtering happen instantly on the factory floor to ensure zero latency.</p>
+          <div class="step-footer">LATENCY BUS: &lt; 2.4MS SUB-FRAME</div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Cloud Telemetry & Alerts</h3>
+          <p class="step-desc">Clean, structured time-series data is streamed via secure MQTT to your centralized
+            VentureOS dashboard, triggering automated SMS and UI alerts before failures happen.</p>
+          <div class="step-footer">TRANSPORT: TLS 1.3 / MQTT-SN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Powered by AI Section -->
+  <div class="container">
+    <div class="ai-section">
+      <div>
+        <span class="section-label">UNIFIED INTELLIGENCE ENGINE</span>
+        <h2 class="section-title">Powered by Award-Winning Predictive AI</h2>
+        <p class="section-desc">SyncForge isn't built on off-the-shelf APIs. The same proprietary NLP and dynamic
+          baselining architecture that seamlessly predicts a student's learning gap in real-time is the exact same
+          underlying engine predicting catastrophic machine failures on the factory floor.</p>
+
+        <div class="ai-cards">
+          <div class="ai-card">
+            <div class="ai-card-title">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1 0 10 10H12V2z" />
+                <path d="M22 12A10 10 0 0 0 12 2v10z" />
+              </svg>
+              Proprietary NLP
+            </div>
+            <p class="ai-card-desc">Translates complex behavioral inputs—whether from students or industrial
+              sensors—into actionable insights.</p>
+          </div>
+          <div class="ai-card">
+            <div class="ai-card-title">
+              <svg class="green" viewBox="0 0 24 24">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+              Dynamic Baselines
+            </div>
+            <p class="ai-card-desc">Machine learning models that adapt autonomously to your specific environment,
+              ensuring precision across verticals.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accolade-card">
+        <div class="accolade-header">
+          <span class="accolade-label">VERIFIED ACCOLADE</span>
+          <div class="accolade-arrows">
+            <button onclick="changeSlide(-1)">&lt;</button>
+            <button onclick="changeSlide(1)">&gt;</button>
+          </div>
+        </div>
+        <div class="accolade-content" style="padding: 0; border-radius: 8px; overflow: hidden; margin-top: 16px;">
+          <img class="slide active" src="assets/Slide1.JPG" alt="Pitch Deck Slide 1" />
+          <img class="slide" src="assets/Slide2.JPG" alt="Pitch Deck Slide 2" />
+          <img class="slide" src="assets/Slide3.JPG" alt="Pitch Deck Slide 3" />
+          <img class="slide" src="assets/Slide4.JPG" alt="Pitch Deck Slide 4" />
+          <img class="slide" src="assets/Slide5.JPG" alt="Pitch Deck Slide 5" />
+        </div>
+        <div class="accolade-footer" style="justify-content: center; padding-top: 16px; border-top: none;">
+          <div style="display: flex; gap: 8px;">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="container" style="padding-top: 0; padding-bottom: 0;">
+    <div class="stats-section">
+      <h2 class="stats-title">Stop guessing. Start measuring.</h2>
+      <p class="stats-desc">Our pilot deployments average a massive reduction in unplanned downtime within the first 30
+        days of integration.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card red">
+          <div class="stat-num">-40%</div>
+          <div class="stat-label">Unplanned Downtime</div>
+          <div class="stat-text">Direct reduction across CNC rotary joints and motor assemblies through early harmonic
+            alerts.</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-num">+15%</div>
+          <div class="stat-label">OEE Improvement</div>
+          <div class="stat-text">Measured baseline lift in micro-stoppage clearance and continuous throughput
+            optimization.</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-num">&lt; 14 Days</div>
+          <div class="stat-label">Time to Value</div>
+          <div class="stat-text">From physical node strapping to live telemetry streaming on the VentureOS enterprise
+            dashboard.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modules in Action -->
+    <span class="modules-label">MODULES IN ACTION</span>
+    <div class="modules-grid">
+      <div class="module-card">
+        <h3 class="module-title">OEE & Telemetry Streaming</h3>
+        <p class="module-desc">Edge-based sensor retrofit for real-time asset health. Zero network footprint.</p>
+        <a href="#" class="module-link">Analyze Pipeline &rarr;</a>
+      </div>
+      <div class="module-card">
+        <h3 class="module-title">Predictive Failure Modeling</h3>
+        <p class="module-desc">AI signature analysis for early warning and part replacement scheduling.</p>
+        <a href="#" class="module-link">Explore Failure Models &rarr;</a>
+      </div>
+      <div class="module-card">
+        <h3 class="module-title">AI Vision Quality Inspection</h3>
+        <p class="module-desc">Edge AI inspection at 60 FPS with sub-millimeter accuracy. Automated reject system
+          integration.</p>
+        <a href="#" class="module-link">Run Inspection Demo &rarr;</a>
+      </div>
+      <div class="module-card">
+        <h3 class="module-title">EduFlow: Academic AI<br>(Ideathon Winner)</h3>
+        <p class="module-desc">Our flagship educational platform that acts as a 24/7 personal tutor, identifying
+          knowledge gaps.</p>
+        <a href="#" class="module-link" onclick="openModal('signup', 'eduflow'); return false;">Deploy Academic Portal &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+<div id="eduflow" class="w-full pt-16 bg-surface antialiased"><div class="flex flex-col w-full">
+<!-- Section 1: Top Technical Breadcrumb & Telemetry Header Bar -->
+<section class="w-full bg-surface-container-lowest px-gutter-lg py-space-md shadow-sm">
+<div class="max-w-[1440px] mx-auto flex flex-col gap-space-sm">
+<!-- Breadcrumb & Status Pill Stream -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-telemetry-code text-telemetry-code text-on-surface-variant">
+<span class="text-primary font-semibold">SOLUTIONS</span>
+<span class="text-outline">/</span>
+<span>ADAPTIVE COGNITIVE PLATFORMS</span>
+<span class="text-outline">/</span>
+<span class="text-on-surface font-semibold bg-surface-container px-space-xs py-0.5 rounded">MODULE 04: EDUFLOW ACADEMIC AI</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs">
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded bg-surface-container text-secondary font-telemetry-code text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            COGNITIVE NLP ENGINE: ACTIVE
+          </div>
+<div class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-telemetry-code text-[11px]">
+<span class="material-symbols-outlined text-[13px] text-primary">speed</span>
+            LATENCY: 34ms
+          </div>
+<div class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded bg-surface-container-high text-primary font-telemetry-code text-[11px] font-semibold">
+<span class="material-symbols-outlined text-[13px]">military_tech</span>
+            IDEATHON WINNER // ARCHITECTURE: BEST IN CLASS
+          </div>
+</div>
+</div>
+<!-- Main Headline + Benchmark Metrics Asymmetric Header Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-end pt-space-xs">
+<div class="lg:col-span-8 flex flex-col gap-space-xs">
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-semibold tracking-tight">
+            Real-Time Cognitive Telemetry &amp; Dynamic Learning Gap Intervention
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+            Deploy adaptive curriculum synthesis, instant NLP doubt-resolution, and automated educator telemetry dashboards without restructuring legacy LMS or academic workflows.
+          </p>
+</div>
+<div class="lg:col-span-4 grid grid-cols-2 gap-space-xs">
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Grade Lift</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-telemetry-metric text-telemetry-metric text-secondary font-bold">+40%</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">mean cohort</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Retention Lift</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-telemetry-metric text-telemetry-metric text-primary font-bold">2.1x</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">vs static syllabi</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Educator Saved</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-telemetry-metric text-telemetry-metric text-on-surface font-bold">15.4</span>
+<span class="font-label-sm text-[10px] text-outline">hrs / week</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Intervention SLA</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-telemetry-metric text-telemetry-metric text-secondary font-bold">&lt;120s</span>
+<span class="font-label-sm text-[10px] text-outline">closed-loop</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Live Interactive Cognitive Telemetry Console (Hero Component) -->
+<section class="w-full px-gutter-lg py-space-xl max-w-[1440px] mx-auto">
+<div class="flex flex-col gap-space-md">
+<!-- Console Master Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary"></div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">
+            Live Cognitive Telemetry Engine // Active Telemetry Stream
+          </span>
+<span class="hidden md:inline-flex px-space-xs py-0.5 bg-surface-container font-telemetry-code text-[11px] text-on-surface-variant rounded">
+            NODE: CLOUD-EDGE-US-EAST // INGEST: 1,480 EPS
+          </span>
+</div>
+<!-- Cohort Switcher -->
+<div class="flex items-center gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<span class="font-label-sm text-label-sm text-outline uppercase px-space-xs">Cohort:</span>
+<button class="px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold shadow-sm transition-all" id="btnCohort1" onclick="switchCohort('cs402')">
+            CS-402: Distributed Systems
+          </button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" id="btnCohort2" onclick="switchCohort('eng101')">
+            ENG-101: Thermodynamics
+          </button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" id="btnCohort3" onclick="switchCohort('data305')">
+            DATA-305: Neural Nets
+          </button>
+</div>
+</div>
+<!-- Split Layout Grid (7:5 Telemetry-to-Inspector Split) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Panel: Adaptive Student Diagnostic Matrix (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Student UUID Profile Ribbon -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded bg-surface-container flex items-center justify-center text-primary font-telemetry-code text-[13px] font-bold">
+                  S84
+                </div>
+<div class="flex flex-col">
+<span class="font-telemetry-code text-[13px] font-bold text-on-surface">Student UUID: STU-84920</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cohort B-12 // Realtime Node 094-Alpha</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded bg-surface-container text-secondary font-telemetry-code text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  STATE: FOCUSED_ENGAGEMENT
+                </span>
+<span class="font-telemetry-code text-telemetry-code text-on-surface-variant bg-surface-container-low px-space-xs py-0.5 rounded text-[11px]">
+                  DIFFICULTY: LVL 3.4 → 4.1
+                </span>
+</div>
+</div>
+<!-- Concept Mastery Gauges with Linear Progress Bars -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Realtime Concept Mastery Gauges</span>
+<span class="font-telemetry-code text-[11px] text-outline">REFRESH: 1,000ms</span>
+</div>
+<!-- Metric 1: Vector Embeddings -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Linear Algebra &amp; Vector Embeddings</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-telemetry-metric text-on-surface text-[16px] font-bold">94%</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-secondary font-label-sm text-[10px] font-semibold uppercase">Mastered</span>
+</div>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 94%"></div>
+</div>
+<div class="flex justify-between font-telemetry-code text-[10px] text-outline">
+<span>Processing Velocity: 142 wpm</span>
+<span>Slip Rate: 0.02</span>
+<span>Confidence: 0.98</span>
+</div>
+</div>
+<!-- Metric 2: Concurrency & Race Conditions -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-error">warning</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Concurrency &amp; Race Conditions</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-telemetry-metric text-error text-[16px] font-bold">62%</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-error font-label-sm text-[10px] font-semibold uppercase">Intervention Triggered</span>
+</div>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 62%"></div>
+</div>
+<div class="flex justify-between font-telemetry-code text-[10px] text-on-surface-variant">
+<span>Identified Knowledge Bottleneck: Semaphore Deadlocks</span>
+<span class="text-error font-semibold">Active Auto-Socratic Dispatch</span>
+</div>
+</div>
+<!-- Metric 3: Memory Allocation -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">analytics</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Memory Management &amp; Heap Allocation</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-telemetry-metric text-on-surface text-[16px] font-bold">88%</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-primary font-label-sm text-[10px] font-semibold uppercase">Proficient</span>
+</div>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 88%"></div>
+</div>
+<div class="flex justify-between font-telemetry-code text-[10px] text-outline">
+<span>Processing Velocity: 110 wpm</span>
+<span>Slip Rate: 0.06</span>
+<span>Confidence: 0.91</span>
+</div>
+</div>
+</div>
+<!-- Student Cognitive Trajectory: Processing Speed vs Concept Retention Sparkline Chart -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md rounded">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Continuous Retention Decay &amp; Reinforcement Vector</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Comparison: Target Cohort Curve (Grey) vs. Adaptive Reinforcement (Cobalt)</span>
+</div>
+<span class="font-telemetry-code text-[11px] text-primary font-semibold">COGNITIVE EQUILIBRIUM: +24.8%</span>
+</div>
+<!-- Inline SVG Cognitive Curve -->
+<div class="w-full h-24 pt-2">
+<svg class="w-full h-full" fill="none" preserveaspectratio="none" viewbox="0 0 600 90">
+<!-- Grid hairlines -->
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="3 3" x1="0" x2="600" y1="20" y2="20"></line>
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="3 3" x1="0" x2="600" y1="50" y2="50"></line>
+<line class="text-outline-variant/30" stroke="currentColor" stroke-dasharray="3 3" x1="0" x2="600" y1="80" y2="80"></line>
+<!-- Static Decay Curve (Ebbinghaus baseline) -->
+<path class="text-outline/40" d="M 0 25 C 80 40, 160 65, 300 78 C 420 84, 520 86, 600 88" fill="none" stroke="currentColor" stroke-dasharray="4 4" stroke-width="2"></path>
+<!-- EduFlow Adaptive Dynamic Reinforcement Waveform -->
+<path class="text-primary" d="M 0 25 C 60 30, 90 42, 110 52 L 115 28 C 180 34, 220 48, 260 56 L 265 24 C 340 28, 410 38, 470 42 L 475 18 C 530 20, 570 22, 600 22" fill="none" stroke="currentColor" stroke-width="2.5"></path>
+<!-- Intervention Point Markers -->
+<circle class="fill-primary" cx="115" cy="28" r="3.5"></circle>
+<circle class="fill-primary" cx="265" cy="24" r="3.5"></circle>
+<circle class="fill-primary" cx="475" cy="18" r="3.5"></circle>
+<!-- Tooltip labels -->
+<text class="fill-primary text-[9px] font-mono" x="120" y="24">P1: Micro-Socratic prompt</text>
+<text class="fill-primary text-[9px] font-mono" x="270" y="20">P2: Cognitive reset</text>
+<text class="fill-primary text-[9px] font-mono" x="475" y="14">P3: Mastery verified</text>
+</svg>
+</div>
+<div class="flex items-center justify-between font-telemetry-code text-[10px] text-outline pt-1">
+<span>SESSION T=0m (Initial Ingestion)</span>
+<span>T=15m (Adaptive Check)</span>
+<span>T=30m (Deep Recall)</span>
+<span>T=45m (Autonomous Mastery)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Live Cognitive Ingress & Realtime Intervention Console (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm h-full">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary">terminal</span>
+<span class="font-headline-sm text-[15px] text-on-surface font-semibold">Live Cognitive Ingress &amp; Event Stream</span>
+</div>
+<div class="flex items-center gap-1 font-telemetry-code text-[11px] text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span>SOCKET_OPEN</span>
+</div>
+</div>
+<!-- Terminal-style Log Stream -->
+<div class="bg-surface-container-low p-space-md rounded font-telemetry-code text-[11px] flex flex-col gap-2.5 overflow-hidden flex-1">
+<div class="flex flex-col gap-1 pb-2 border-b border-surface-container">
+<div class="flex items-center justify-between text-outline text-[10px]">
+<span>[11:24:02.104] TELEMETRY_INGRESS</span>
+<span class="text-primary font-semibold">STATUS: PARSED</span>
+</div>
+<div class="text-on-surface font-medium">
+                  Query parsed: <span class="text-on-surface-variant font-normal">"Why does mutex lock contention degrade throughput on 64-core topologies?"</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 pb-2 border-b border-surface-container">
+<div class="flex items-center justify-between text-outline text-[10px]">
+<span>[11:24:02.138] NLP_SOCRATIC_RESOLVE</span>
+<span class="text-secondary font-semibold">LATENCY: 34ms</span>
+</div>
+<div class="text-on-surface font-medium">
+                  Synthetic tutor dispatched Socratic breakdown with live thread concurrency diagram.
+                </div>
+<div class="text-outline text-[10px]">Guardrail Check: Zero-hallucination syllabus pass rate 100%</div>
+</div>
+<div class="flex flex-col gap-1 pb-2 border-b border-surface-container">
+<div class="flex items-center justify-between text-outline text-[10px]">
+<span>[11:24:04.890] KNOWLEDGE_GRAPH_SYNC</span>
+<span class="text-primary font-semibold">SYNC_OK</span>
+</div>
+<div class="text-on-surface font-medium">
+                  Student concept model updated: <span class="text-secondary font-semibold">Mutex contention mastery +18%</span>
+</div>
+<div class="text-outline text-[10px]">Graph Edge: #NODE_CS_402_CONCURRENCY_L3</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-outline text-[10px]">
+<span>[11:24:06.211] ALERT_EDUCATOR_PIPELINE</span>
+<span class="text-error font-semibold">BOTTLENECK_TAGGED</span>
+</div>
+<div class="text-on-surface font-medium">
+                  Cohort bottleneck flagged: <span class="text-error font-semibold">6 students</span> struggled with Semaphore Deadlocks.
+                </div>
+<div class="bg-surface-container p-space-xs rounded text-[10px] text-on-surface-variant mt-1">
+                  Automated Action: Synthesis recap sheet and diagnostic quiz pushed to Prof. Vance queue.
+                </div>
+</div>
+</div>
+<!-- Terminal Controls & Diagnostic Status Footer -->
+<div class="flex items-center justify-between pt-space-xs font-telemetry-code text-[11px] text-outline">
+<span>BUFFERS: 128KB</span>
+<span class="text-primary">EVALUATOR: SIL-3 READY</span>
+<span>FILTER: VERIFIED_ONLY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Core Architectural Capabilities (4-Column Technical Grid) -->
+<section class="w-full bg-surface-container-low px-gutter-lg py-space-xl">
+<div class="max-w-[1440px] mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Engine Capabilities</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">
+          Precision Telemetry Engineered for Cognitive Acceleration
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Four dedicated machine intelligence pipelines working concurrently to model student comprehension, guide instruction, and protect educator bandwidth.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Capability Card 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">tune</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold">
+              Dynamic Baselining &amp; Adaptive Curriculum
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Continuous neural assessment recalibrates problem difficulty per student in real-time. By dynamically shifting problem parameters, EduFlow mitigates cognitive fatigue and prevents boredom loops.
+            </p>
+</div>
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<span class="font-telemetry-code text-[11px] text-outline">SPEC: DYN-DIFF-v2</span>
+<span class="material-symbols-outlined text-[16px] text-primary">arrow_forward</span>
+</div>
+</div>
+<!-- Capability Card 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">psychology</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold">
+              Instant Socratic NLP Doubt-Solver
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Proprietary context-aware AI tutor grounded strictly in verified syllabus courseware. Employs Socratic inquiry prompting rather than spoon-feeding solutions, backed by zero-hallucination guardrails.
+            </p>
+</div>
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<span class="font-telemetry-code text-[11px] text-outline">SPEC: NLP-SOC-400</span>
+<span class="material-symbols-outlined text-[16px] text-primary">arrow_forward</span>
+</div>
+</div>
+<!-- Capability Card 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">notification_important</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold">
+              Automated Educator Early-Intervention
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Predictive telemetry flags at-risk students up to 3 weeks before midterms. Automatically synthesizes tailored diagnostic recaps and micro-assignments directly into professor workflow queues.
+            </p>
+</div>
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<span class="font-telemetry-code text-[11px] text-outline">SPEC: EARLY-WARN-09</span>
+<span class="material-symbols-outlined text-[16px] text-primary">arrow_forward</span>
+</div>
+</div>
+<!-- Capability Card 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">integration_instructions</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold">
+              Seamless LTI 1.3 &amp; LMS Integration
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Turnkey OneRoster and LTI 1.3 Advantage interoperability with Canvas, Blackboard, Moodle, and Google Classroom. Live telemetry bridges without schema redesigns or student record migrations.
+            </p>
+</div>
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<span class="font-telemetry-code text-[11px] text-outline">SPEC: LTI-ADV-ONE</span>
+<span class="material-symbols-outlined text-[16px] text-primary">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Deep-Dive Architecture: The EduFlow Cognitive Knowledge Graph Engine -->
+<section class="w-full px-gutter-lg py-space-xl max-w-[1440px] mx-auto">
+<div class="flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">System Pipeline &amp; Ingestion Topology</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">
+          The EduFlow Cognitive Knowledge Graph Engine
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          End-to-end data flow: Ingesting high-frequency student interactions, projecting into multi-dimensional ontological spaces, and triggering sub-50ms pedagogical feedback.
+        </p>
+</div>
+<!-- Flowchart Visual Steps -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-sm">
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-telemetry-code text-[11px] text-primary font-bold">STAGE 01</span>
+<span class="material-symbols-outlined text-[16px] text-outline">input</span>
+</div>
+<h4 class="font-headline-sm text-[14px] text-on-surface font-semibold">Student Interaction Ingress</h4>
+<p class="font-body-sm text-[12px] text-on-surface-variant">
+            Live keystroke pacing, submission telemetry, query prompts, and diagnostic solution paths streaming via secure WebSocket.
+          </p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-telemetry-code text-[11px] text-primary font-bold">STAGE 02</span>
+<span class="material-symbols-outlined text-[16px] text-outline">memory</span>
+</div>
+<h4 class="font-headline-sm text-[14px] text-on-surface font-semibold">Vector Embedding &amp; Concept Parsing</h4>
+<p class="font-body-sm text-[12px] text-on-surface-variant">
+            Transformer-based parsing maps query terms and error codes against the institutional curriculum embeddings space.
+          </p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-telemetry-code text-[11px] text-primary font-bold">STAGE 03</span>
+<span class="material-symbols-outlined text-[16px] text-outline">hub</span>
+</div>
+<h4 class="font-headline-sm text-[14px] text-on-surface font-semibold">Knowledge Graph Node Mapping</h4>
+<p class="font-body-sm text-[12px] text-on-surface-variant">
+            Identifies upstream prerequisite lapses, calculates student node-weight shifts, and detects latent misconception patterns.
+          </p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-telemetry-code text-[11px] text-primary font-bold">STAGE 04</span>
+<span class="material-symbols-outlined text-[16px] text-outline">send</span>
+</div>
+<h4 class="font-headline-sm text-[14px] text-on-surface font-semibold">Closed-Loop Resolution</h4>
+<p class="font-body-sm text-[12px] text-on-surface-variant">
+            Emits targeted Socratic cues to the student interface while batch-updating the professor intervention matrix.
+          </p>
+</div>
+</div>
+<!-- Side-by-side Technical Schema Viewer -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Visual Architecture Diagram Placeholder -->
+<div class="lg:col-span-6 bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm justify-between">
+<div class="flex items-center justify-between pb-space-xs border-b border-surface-container">
+<span class="font-headline-sm text-[14px] text-on-surface font-semibold">Topology Architecture Overview</span>
+<span class="font-telemetry-code text-[11px] text-secondary">REALTIME_MESH: ONLINE</span>
+</div>
+<div class="w-full h-72 rounded bg-surface-container-low overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="High-tech enterprise architecture schematic diagram showing real-time cognitive data streaming pipelines, knowledge graph ontologies, vector embeddings, and educator dashboard nodes in crisp cobalt, teal, and slate grey minimalist industrial line-work with sharp contrasts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlCrGc-fUYz29WCREBxjjFtNF7oWRe0KfAXyZtl2BGauIEJ5Db-ZmTp7g0Qw4rW12_4reTyKiQ8vQq4aazEdXy3fCnhu0UAopV8FcWt4Fq0dVciSralmS7Lg_roNS4E2vFOxd-slIN0r5Il-QDsDuNdekBz7-EJNHcT2Hc1Cyf7PW54eMXVypVEI8Tp1Tw7NCEDVg7w3UnzW5cyalsq3Ny4darsS0VUcbmL-eDGOVYLhoQGvAV7_H8"/>
+</div>
+<div class="flex items-center justify-between font-telemetry-code text-[11px] text-outline">
+<span>INGRESS: TLS 1.3 / gRPC</span>
+<span>STORAGE: Time-Series + GraphDB</span>
+<span>AUDIT: FERPA ALIGNED</span>
+</div>
+</div>
+<!-- Structured JSON Cognitive Event Telemetry Payload -->
+<div class="lg:col-span-6 bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between gap-space-xs">
+<div class="flex items-center justify-between pb-space-xs border-b border-surface-container">
+<span class="font-telemetry-code text-[12px] text-on-surface font-semibold">Structured JSON Telemetry Payload</span>
+<span class="font-telemetry-code text-[11px] text-primary">TOPIC: eduflow/telemetry/cohort_b12</span>
+</div>
+<pre class="font-telemetry-code text-[11px] text-on-surface overflow-x-auto leading-relaxed p-space-sm bg-surface-container-lowest rounded"><code>{
+  <span class="text-primary">"timestamp_ns"</span>: 1773489842104000,
+  <span class="text-primary">"session_uuid"</span>: <span class="text-secondary">"ses_9942a-fd88-40a2"</span>,
+  <span class="text-primary">"student_hash"</span>: <span class="text-secondary">"sha256:7e8d02fa3...89c"</span>,
+  <span class="text-primary">"concept_id"</span>: <span class="text-secondary">"CONCURRENCY_MUTEX_LOCKS"</span>,
+  <span class="text-primary">"difficulty_index"</span>: 3.82,
+  <span class="text-primary">"response_time_ms"</span>: 2840,
+  <span class="text-primary">"error_signature"</span>: <span class="text-error">"DEADLOCK_PHILOSOPHER_CYCLE"</span>,
+  <span class="text-primary">"socratic_intervention_type"</span>: <span class="text-secondary">"RESOURCE_HIERARCHY_HINT"</span>,
+  <span class="text-primary">"educator_alert_status"</span>: {
+    <span class="text-primary">"flagged"</span>: <span class="text-error">true</span>,
+    <span class="text-primary">"cohort_friction_ratio"</span>: 0.28,
+    <span class="text-primary">"severity"</span>: <span class="text-error">"MEDIUM_BOTTLENECK"</span>
+  },
+  <span class="text-primary">"retention_confidence_score"</span>: 0.941
+}</code></pre>
+<div class="flex items-center justify-between font-telemetry-code text-[11px] text-outline pt-space-xs">
+<span>ZERO PII RECORDING</span>
+<span>END-TO-END CRYPTOGRAPHIC ANONYMIZATION</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Architectural Comparison Matrix -->
+<section class="w-full bg-surface-container-lowest px-gutter-lg py-space-xl">
+<div class="max-w-[1440px] mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Comparative Benchmarking</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">
+          Architectural Differentiation Matrix
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Why static LMS modules and untethered LLM chat interfaces fail standard academic rigor.
+        </p>
+</div>
+<!-- Hardware/System Matrix Table -->
+<div class="overflow-x-auto rounded-xl shadow-sm">
+<table class="w-full text-left font-body-sm text-body-sm border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-md px-space-lg">Evaluation Criteria</th>
+<th class="py-space-md px-space-lg text-primary font-bold">SyncForge EduFlow AI</th>
+<th class="py-space-md px-space-lg">Legacy LMS (Canvas/Moodle alone)</th>
+<th class="py-space-md px-space-lg">Generic Generative AI Wrappers</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low bg-surface-container-lowest">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg font-medium text-on-surface">Dynamic Knowledge Graph Modeling</td>
+<td class="py-space-md px-space-lg text-secondary font-semibold">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Real-time continuous updating
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-outline">Static scorebooks only</td>
+<td class="py-space-md px-space-lg text-outline">Stateless chat transcripts</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg font-medium text-on-surface">Real-Time Educator Early Alerting</td>
+<td class="py-space-md px-space-lg text-secondary font-semibold">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Sub-120s automated escalation
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-outline">Manual post-exam grading delay</td>
+<td class="py-space-md px-space-lg text-error">Zero educator integration</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg font-medium text-on-surface">Anti-Hallucination Syllabus Guardrails</td>
+<td class="py-space-md px-space-lg text-secondary font-semibold">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Strict RAG &amp; verifiable provenance
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-outline">N/A (Static storage)</td>
+<td class="py-space-md px-space-lg text-error">Severe hallucination risk</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg font-medium text-on-surface">Cognitive Load &amp; Difficulty Adaptation</td>
+<td class="py-space-md px-space-lg text-secondary font-semibold">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Bayesian Knowledge Tracing 2.0
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-outline">Linear linear-only paths</td>
+<td class="py-space-md px-space-lg text-outline">Uncalibrated prompt answers</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg font-medium text-on-surface">LTI 1.3 Advantage &amp; Security</td>
+<td class="py-space-md px-space-lg text-secondary font-semibold">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Native certified interoperability
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-on-surface">Native platform</td>
+<td class="py-space-md px-space-lg text-error">Requires custom unverified scrapers</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg font-medium text-on-surface">FERPA &amp; Zero-Data Retention SLA</td>
+<td class="py-space-md px-space-lg text-secondary font-semibold">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Fully anonymized institutional VPC
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-on-surface">Compliant</td>
+<td class="py-space-md px-space-lg text-error">Data harvested for model re-training</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Section 6: Academic Institution & Enterprise Deployments (3 Case Studies) -->
+<section class="w-full bg-surface px-gutter-lg py-space-xl">
+<div class="max-w-[1440px] mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Field Deployment Outcomes</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">
+          Validated Across Global Universities &amp; Technical Academies
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Measurable pedagogical improvements across high-volume STEM cohorts and critical workforce apprenticeships.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Deployment 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-full h-36 rounded bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High-density modern technical university lecture hall with student workstations displaying live programming monitors and data dashboards under crisp clinical architectural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEeI6FC63BmMDeG9poMSs9laFbJ0k6UaqgA7Ut0rut-TYB0qwq-czQmrHzUHEItVQv8wLnIMUXLX9djn8aw2B2vyaShYvF_8EfV3zXbl5U3bij4ApWCNsZb72JTkE-TXzu4Vsavl8XsUSN618MF0TbJ7Sjzlc7LyZl4DLCqJH3krhli5oxBALs2CbKkBXHEioB_FlxI6H4-RyJ9ki0Wj0YVYKCvIaEchP-XRPZ6T5Po7u2T9-oBOiE"/>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-[11px] text-primary font-bold uppercase">Computer Science Dept</span>
+<span class="font-telemetry-code text-[10px] text-outline">4,200 UNDERGRADS</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold">
+              Top Tier Engineering University
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Deployed in gateway Systems Programming courses. Reduced midterm dropout rate by 34% while handling 98,000 algorithmic doubt resolutions without educator intervention.
+            </p>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Midterm Failure Rate:</span>
+<span class="font-telemetry-code text-secondary font-bold text-[13px]">-34.2%</span>
+</div>
+</div>
+<!-- Deployment 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-full h-36 rounded bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Modern medical pathology simulation laboratory with digital microscope stations and clinical students analyzing anatomical telemetry on high-resolution screens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUeuUn-hP_V6VAPyJdYvUMe22qnFxI3vVFS9XxXS4XJ7HBTYxEKex1fCJBqGl20nU8N4toUKFf7DmM2kj1nxiJjJUFQXEi-F8LU-CdYkNfYSxe1nRoE7H8dKCpa4WwuPPkBV9rQ2Wa-6lv115mpkboIjxNeGn1nH2q1sSfniqr7Q5kHAx6ci-WVRSfyevJN5Om8QChprswWqMUdPrm-M0b8CttcC0A_kS3bNFYxUdAtfvBdfoz1Egh"/>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-[11px] text-primary font-bold uppercase">Clinical Pathology</span>
+<span class="font-telemetry-code text-[10px] text-outline">850 RESIDENTS</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold">
+              Medical Sciences Academy
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Trained residents on complex histological diagnostics using adaptive micro-spurt quizzing. Accelerated memorization curve and anatomical recall accuracy by 42%.
+            </p>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Recall Accuracy:</span>
+<span class="font-telemetry-code text-secondary font-bold text-[13px]">+42.0%</span>
+</div>
+</div>
+<!-- Deployment 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-full h-36 rounded bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Industrial aerospace manufacturing hangar with aerospace technicians in blue overalls inspecting a high-bypass jet engine with augmented diagnostic tablets." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK7_TBRJfll2bfe_yujgRMOu65UgGjbvALbnGIbsqYhdGBQEUFesxlAE-HoUU0SRB2YUBnX7tPFdLv5i7JuQALxoc6cbAf8UGOX8ZSpCqRg7r2sUve7JdFeN6XnnvPEdgx51B1cMt9QNqfqOy96lZ-nuULhuqPoSIKzcQbie3pr4zheS0dt_SCYepOPksPejiY2l0bfSWqJ7IqgRMXZrz-LgimHqBCBpV1wQGp-Ws_wWm9i08-pQPV"/>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-[11px] text-primary font-bold uppercase">Workforce Upskilling</span>
+<span class="font-telemetry-code text-[10px] text-outline">1,200 TECHNICIANS</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold">
+              Global Aerospace Fleet Training
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Turbine maintenance certification ramp. Cut full technician qualification turnaround from 90 days down to 28 days via active simulation telemetry.
+            </p>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Cycle Compression:</span>
+<span class="font-telemetry-code text-primary font-bold text-[13px]">90d → 28d</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 7: Institutional Pilot Call to Action Banner -->
+<section class="w-full px-gutter-lg py-space-xl max-w-[1440px] mx-auto">
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded bg-surface-container text-primary font-telemetry-code text-[11px] font-semibold w-fit">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+          SEAMLESS ZERO-MIGRATION DEPLOYMENT
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">
+          Deploy EduFlow AI Across Your Department or Campus in 7 Days
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Complete with verified LTI 1.3 sandboxes, strict FERPA and GDPR compliance guarantees, and dedicated pedagogical onboarding for your faculty.
+        </p>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm">
+<a class="inline-flex items-center justify-center px-space-lg py-space-sm rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg hover:bg-primary transition-all shadow-sm" href="#" style="text-decoration: none;" onclick="openModal('signup', 'eduflow'); return false;">
+          Request Institutional Sandbox Access
+        </a>
+<a class="inline-flex items-center justify-center px-space-lg py-space-sm rounded-lg bg-surface-container-lowest border border-outline-variant text-on-surface font-label-lg text-label-lg hover:bg-surface-container transition-all" href="#" style="text-decoration: none;" onclick="openModal('signup', 'eduflow'); return false;">
+          Read Technical Whitepaper
+        </a>
+</div>
+</div>
+</section>
+<!-- Inline Script for Client-Side Micro-Interactions -->
+<script>
+    function switchCohort(cohortId) {
+      const b1 = document.getElementById('btnCohort1');
+      const b2 = document.getElementById('btnCohort2');
+      const b3 = document.getElementById('btnCohort3');
+      
+      [b1, b2, b3].forEach(btn => {
+        btn.className = "px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all";
+      });
+
+      if(cohortId === 'cs402') {
+        b1.className = "px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold shadow-sm transition-all";
+      } else if(cohortId === 'eng101') {
+        b2.className = "px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold shadow-sm transition-all";
+      } else if(cohortId === 'data305') {
+        b3.className = "px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface font-label-md text-label-md font-semibold shadow-sm transition-all";
+      }
+    }
+  </script>
+</div></div>
+  <!-- Pricing -->
+  <div id="pricing" class="pricing-section">
+    <div class="container" style="padding: 0 32px;">
+      <div class="pricing-header">
+        <span class="pricing-label">TRANSPARENT PLANS</span>
+        <h2 class="pricing-title">Choose Your Deployment Model</h2>
+        <p class="pricing-desc">Scale from a single edge node to global enterprise deployment without friction.</p>
+      </div>
+
+      <div class="pricing-tabs">
+        <div class="pricing-tab active" data-model="eduflow">EduFlow AI</div>
+        <div class="pricing-tab" data-model="oee">OEE & Telemetry</div>
+        <div class="pricing-tab" data-model="vision">Vision AI</div>
+        <div class="pricing-tab" data-model="predictive">Predictive Maintenance</div>
+      </div>
+
+      <div id="pricing-grid" class="pricing-grid">
+        <div class="pricing-card">
+          <div class="tier-label">TIER 01 // BASELINE</div>
+          <h3 class="tier-name">Personal</h3>
+          <p class="tier-desc">Single-department or lab-scale testing.</p>
+          <div class="tier-price">₹2,999 <span class="tier-price-period">/mo</span></div>
+          <ul class="tier-features">
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Up to 2 Edge Nodes or 100 Students</li>
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Standard MQTT Cloud Stream</li>
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Community & Email Support</li>
+            <li class="tier-feature missing"><svg viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg> Custom Machine Vision Models</li>
+          </ul>
+          <button class="btn-pricing outline" onclick="openModal('signup', null, 'personal')">Deploy Personal</button>
+        </div>
+
+        <div class="pricing-card popular">
+          <div class="popular-badge">MOST POPULAR</div>
+          <div class="tier-label">TIER 02 // PRODUCTION</div>
+          <h3 class="tier-name">Business</h3>
+          <p class="tier-desc">Full operational production lines and multi-faculty institutions.</p>
+          <div class="tier-price">₹11,999 <span class="tier-price-period">/mo</span></div>
+          <ul class="tier-features">
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Up to 15 Edge Nodes or 1,500 Students</li>
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Sub-millisecond Local Bus Analytics</li>
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Automated SMS & Webhook Escalations</li>
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Custom Baseline Recalibration</li>
+          </ul>
+          <button class="btn-pricing solid" onclick="openModal('signup', null, 'business')">Deploy Business Pilot</button>
+        </div>
+
+        <div class="pricing-card">
+          <div class="tier-label">TIER 03 // UNLIMITED</div>
+          <h3 class="tier-name">Enterprise</h3>
+          <p class="tier-desc">Multi-site global manufacturing plants and university networks.</p>
+          <div class="tier-price custom">Custom <span class="tier-price-period">/ SLA tiered</span></div>
+          <ul class="tier-features">
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Unlimited Edge Hardware Fleet</li>
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Dedicated Technical Account Manager</li>
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> Custom Edge Firmware & Model Synthesis</li>
+            <li class="tier-feature included"><svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg> 99.99% Hardware-to-Cloud SLA Guarantee</li>
+          </ul>
+          <button class="btn-pricing outline" onclick="openModal('signup', null, 'enterprise')">Contact Enterprise Desk</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>SOLUTIONS</h4>
+        <ul>
+          <li><a href="#" class="disabled-link">Industrial IoT <span class="coming-soon">Coming Soon</span></a></li>
+          <li><a href="#" class="disabled-link">AI Vision QC <span class="coming-soon">Coming Soon</span></a></li>
+          <li><a href="#" class="disabled-link">Predictive Maintenance <span class="coming-soon">Coming Soon</span></a></li>
+          <li><a href="#eduflow">EduFlow LMS Portal</a></li>
+          <li><a href="#" class="disabled-link">Edge Orchestration <span class="coming-soon">Coming Soon</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>ARCHITECTURE</h4>
+        <ul>
+          <li><a href="#">Unified Mesh Model</a></li>
+          <li><a href="#">Telemetry Engine</a></li>
+          <li><a href="#">OPC-UA / MQTT Bridges</a></li>
+          <li><a href="#">Sub-millisecond Bus</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>RESOURCES</h4>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">REST & gRPC APIs</a></li>
+          <li><a href="#">Client SDKs</a></li>
+          <li><a href="#">Hardware Benchmarks</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="#">About SyncForge</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Engineering Careers</a></li>
+          <li><a href="#">Contact Sales</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>TRUST & STATUS</h4>
+        <div class="footer-status-item" style="font-family: 'JetBrains Mono', monospace;">
+          <div class="dot"></div> All Systems Operational
+        </div>
+        <div class="footer-status-item">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <polyline points="9 12 11 14 15 10" />
+          </svg>
+          SOC2 Type II Certified
+        </div>
+        <div class="footer-status-item">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          ISO/IEC 27001 Aligned
+        </div>
+        <div class="footer-status-item">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M12 8v4" />
+            <path d="M12 16h.01" />
+          </svg>
+          Industrial Safety SIL-3
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 SyncForge Technologies Inc. All rights reserved.</div>
+      <div class="footer-links-bottom">
+        <a href="#">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="#">Trust Center</a>
+        <span class="footer-node">NODE_ID: SF-US-EAST-01</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── AUTH MODAL (wired to landing.js Firebase logic) ─── -->
+  <div id="auth-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true">
+
+      <!-- SIGNUP VIEW -->
+      <div id="signup-form" class="modal-view active">
+        <div class="modal-header">
+          <div>
+            <h2 class="modal-title" id="signup-title">Configure Enterprise Pilot</h2>
+            <p class="modal-subtitle" id="signup-desc">Provision your secure environment.</p>
+          </div>
+          <button class="modal-close" onclick="closeModal()" aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <form class="modal-form" onsubmit="handleAuth(event)">
+          <div class="form-group">
+            <label class="form-label" for="company">COMPANY NAME</label>
+            <input id="company" class="form-input" type="text" placeholder="e.g. Acme Precision Robotics" required
+              autocomplete="organization" oninput="validateSSO()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-email">WORK EMAIL</label>
+            <input id="signup-email" class="form-input" type="email" placeholder="operator@enterprise.com" required
+              autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-password">PASSWORD</label>
+            <input id="signup-password" class="form-input" type="password" placeholder="••••••••••••" required
+              autocomplete="new-password" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="module-select">SELECT INITIAL MODULE</label>
+            <div class="form-select-wrap">
+              <select id="module-select" class="form-select" onchange="validateSSO()">
+                <option value="eduflow" selected>EduFlow Academic AI</option>
+                <option value="oee" disabled>OEE &amp; Telemetry Analytics (Coming Soon)</option>
+                <option value="predictive" disabled>Predictive Maintenance (Coming Soon)</option>
+                <option value="vision" disabled>AI Vision Quality Control (Coming Soon)</option>
+              </select>
+              <svg class="select-chevron" width="16" height="16" viewBox="0 0 24 24">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </div>
+          </div>
+          <div class="form-checkbox-row">
+            <input id="terms-checkbox" class="form-checkbox" type="checkbox" onchange="validateSSO()" />
+            <label for="terms-checkbox" class="form-checkbox-label">
+              I agree to the <a href="terms.html" class="modal-link">Terms and Conditions</a>
+            </label>
+          </div>
+          <button type="submit" class="btn-modal-primary submit-btn" disabled>Provision Dashboard</button>
+        </form>
+
+        <div class="modal-or"><span>OR</span></div>
+        <button type="button" id="google-sso-btn" class="btn-modal-google" disabled>
+          <svg width="18" height="18" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          Continue with Google Workspace
+        </button>
+        <p class="modal-login-text">Already a client? <a href="#" class="modal-link"
+            onclick="switchView('login'); return false;">Log in</a></p>
+      </div>
+
+      <!-- LOGIN VIEW -->
+      <div id="login-form" class="modal-view">
+        <div class="modal-header">
+          <div>
+            <h2 class="modal-title">Client Login</h2>
+            <p class="modal-subtitle">Access your SyncForge dashboard.</p>
+          </div>
+          <button class="modal-close" onclick="closeModal()" aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <form class="modal-form" onsubmit="handleAuth(event)">
+          <div class="form-group">
+            <label class="form-label">WORK EMAIL</label>
+            <input class="form-input" type="email" placeholder="operator@enterprise.com" required
+              autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">PASSWORD</label>
+            <input class="form-input" type="password" placeholder="••••••••••••" required
+              autocomplete="current-password" />
+          </div>
+          <button type="submit" class="btn-modal-primary submit-btn">Authenticate &amp; Enter</button>
+        </form>
+        <div class="modal-or"><span>OR</span></div>
+        <button type="button" id="google-login-sso-btn" class="btn-modal-google">
+          <svg width="18" height="18" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          Continue with Google Workspace
+        </button>
+        <p class="modal-login-text">New client? <a href="#" class="modal-link"
+            onclick="switchView('signup'); return false;">Create account</a></p>
+      </div>
+
+    </div>
+  </div>
+
+<script type="module" src="landing.js"></script>
 </body>
 
 </html>
