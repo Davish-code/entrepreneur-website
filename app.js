@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { db, auth, onAuthStateChanged, signOut, collection, addDoc, serverTimestamp, getDocs, doc, setDoc, getDoc, updateDoc, arrayUnion, query, where, limit } from "./firebase-config.js";
 
-const AI_API_BASE_URL = "https://massage-eur-curtis-mention.trycloudflare.com";
-const INTERVIEW_API_BASE_URL = "https://random-words-here.trycloudflare.com";
+const AI_API_BASE_URL = "https://highway-pmid-continued-affordable.trycloudflare.com";
+const INTERVIEW_API_BASE_URL = "https://changes-sixth-mon-pleasant.trycloudflare.com";
 
 let currentUser = null;
 
