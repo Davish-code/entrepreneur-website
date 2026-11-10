@@ -52,7 +52,7 @@ async def generate_interview(request: PromptRequest):
     
     try:
         response = client.chat.completions.create(
-            model="groq/compound-mini",
+            model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": f"Subject: {request.subject}\nReport:\n{request.analysis_report}"}
@@ -67,6 +67,7 @@ async def generate_interview(request: PromptRequest):
         }
         
     except Exception as e:
+        print(f"Error in generate_interview: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/evaluate-interview")
@@ -122,7 +123,7 @@ async def evaluate_interview(
     
     try:
         response = client.chat.completions.create(
-            model="groq/compound-mini",
+            model="openai/gpt-oss-120b",
             response_format={ "type": "json_object" },
             messages=[
                 {"role": "system", "content": system_prompt},
@@ -158,7 +159,7 @@ async def evaluate_sandbox_code(request: SandboxEvalRequest):
     
     try:
         response = client.chat.completions.create(
-            model="groq/compound-mini",
+            model="openai/gpt-oss-120b",
             response_format={ "type": "json_object" },
             messages=[
                 {"role": "system", "content": system_prompt},
